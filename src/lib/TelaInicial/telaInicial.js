@@ -33,30 +33,27 @@ export default () => {
 
   const botaoEntrar = container.querySelector('#botaoEntrar');
 
-
   function login(event) {
     event.preventDefault();
-    const email = container.querySelector("#emailTelaInicial").value;
-    const senha = container.querySelector("#senhaTelaInicial").value;
+    const email = container.querySelector('#emailTelaInicial').value;
+    const senha = container.querySelector('#senhaTelaInicial').value;
     // console.log('antes')
-    firebase.auth().signInWithEmailAndPassword(email,senha).then(response =>{
+    firebase.auth().signInWithEmailAndPassword(email, senha).then((response) => {
       window.location.hash = '#linhaDoTempo';
-      console.log('success', response)
-    }).catch(error => {
-    alert(capturarErro(error));
-    })
+      console.log('success', response);
+    }).catch((error) => {
+      alert(capturarErro(error));
+    });
   }
 
-  function capturarErro(error){
-    if (error.code == "auth/user-not-found"){
-      return "Usuário não encontrado";
-    } 
+  function capturarErro(error) {
+    if (error.code == 'auth/user-not-found') {
+      return 'Usuário não encontrado';
+    }
     return error.message;
   }
-  
+
   botaoEntrar.addEventListener('click', login);
 
   return container;
 };
-
-
