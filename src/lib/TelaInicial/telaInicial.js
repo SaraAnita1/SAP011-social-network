@@ -32,43 +32,38 @@ export default () => {
 
   container.innerHTML = conteudo;
 
-
   const botaoEntrar = container.querySelector('#botaoEntrar');
-
 
   function login(event) {
     event.preventDefault();
-    const email = container.querySelector("#emailTelaInicial").value;
-    const senha = container.querySelector("#senhaTelaInicial").value;
-    firebase.auth().signInWithEmailAndPassword(email,senha).then(response =>{
+    const email = container.querySelector('#emailTelaInicial').value;
+    const senha = container.querySelector('#senhaTelaInicial').value;
+    firebase.auth().signInWithEmailAndPassword(email, senha).then((response) => {
       window.location.hash = '#linhaDoTempo';
-      console.log('success', response)
-    }).catch(error => {
-    capturarErro(error);
-    })
+      console.log('success', response);
+    }).catch((error) => {
+      capturarErro(error);
+    });
   }
- const usuarioNaoEncontrado = container.querySelector("#usuarioNaoEncontrado");
-  function capturarErro(error){
-   usuarioNaoEncontrado.textContent = ""; 
-    if (error.code == "auth/user-not-found"){
-     usuarioNaoEncontrado.textContent = "Usuário não encontrado";
+  const usuarioNaoEncontrado = container.querySelector('#usuarioNaoEncontrado');
+  function capturarErro(error) {
+    usuarioNaoEncontrado.textContent = '';
+    if (error.code == 'auth/user-not-found') {
+      usuarioNaoEncontrado.textContent = 'Usuário não encontrado';
     } else {
       return error.message;
     }
   }
-  
+
   botaoEntrar.addEventListener('click', login);
 
-  
-  firebase.auth().onAuthStateChanged(function(user){
-    if(user) {
-      window.location.hash = "#linhaDoTempo"
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      window.location.hash = '#linhaDoTempo';
     }
-  })
+  });
 
   botaoEntrar.addEventListener('click', login);
 
   return container;
 };
-
-
