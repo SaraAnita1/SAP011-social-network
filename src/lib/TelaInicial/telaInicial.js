@@ -1,4 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
+import { login, entrarComGoogle } from '../../Firebase/FirebaseAuth';
+
 
 export default () => {
   const container = document.createElement('div');
@@ -35,17 +37,20 @@ export default () => {
         `;
 
   container.innerHTML = conteudo;
-
+  const email = container.querySelector('#emailTelaInicial');
+  const senha = container.querySelector('#senhaTelaInicial');
   const botaoEntrar = container.querySelector('#botaoEntrar');
   const botaoGoogle = container.querySelector('#logoGoogle');
   
   
+  
   botaoGoogle.addEventListener('click', entrarComGoogle);
-  botaoEntrar.addEventListener('click', login);
+  botaoEntrar.addEventListener('click', (event)=>{
+    event.preventDefault();
+    login(email.value,senha.value)
+  });
 
   return container;
 };
-const email = document.querySelector('#emailTelaInicial').value;
-const senha = document.querySelector('#senhaTelaInicial').value;
 
-export { email, senha };
+

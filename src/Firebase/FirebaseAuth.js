@@ -1,19 +1,20 @@
-import { getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  googleProvider,
-  onAuthStateChanged,
-  signOut,
-} from 'firebase/auth';
+// import { getAuth,
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   GoogleProvider,
+//   onAuthStateChanged,
+//   signOut,
+// } from 'firebase/auth';
 
-import { email, senha } from '../lib/TelaInicial/telaInicial.js';
 
-const auth = getAuth();
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup }
+ from 'firebase/auth';
 
-function login(event) {
-    event.preventDefault();
+import { auth } from './FirebaseConfig.js';
 
-    firebase.auth().signInWithEmailAndPassword(email, senha).then((response) => {
+
+export function login(email, senha) {
+     signInWithEmailAndPassword(auth, email, senha).then((response) => {
       window.location.hash = '#linhaDoTempo';
       console.log('success', response);
     }).catch((error) => {
@@ -47,9 +48,9 @@ function capturarErro(error) {
   }
   
 
-  function entrarComGoogle () {
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(googleProvider)
+  export function entrarComGoogle () {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
     .then(() => {
       window.location.hash = "#linhaDoTempo"
     })
@@ -74,7 +75,7 @@ function cadastrarUsuario(event) {
     capturarErro(error);
     });
   }
-  function capturarErro(error) {
+  function capturarErroCadastro(error) {
     mensagemErro.textContent = '';
     mensagemErroSenha.textContent = '';
     if (error.code === 'auth/email-already-in-use') {
