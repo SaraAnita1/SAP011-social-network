@@ -1,3 +1,4 @@
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default () => {
   const container = document.createElement('div');
@@ -36,61 +37,15 @@ export default () => {
   container.innerHTML = conteudo;
 
   const botaoEntrar = container.querySelector('#botaoEntrar');
-  const botaoGoogle = container.querySelector("#logoGoogle");
-
-  function login(event) {
-    event.preventDefault();
-    const email = container.querySelector('#emailTelaInicial').value;
-    const senha = container.querySelector('#senhaTelaInicial').value;
-    firebase.auth().signInWithEmailAndPassword(email, senha).then((response) => {
-      window.location.hash = '#linhaDoTempo';
-      console.log('success', response);
-    }).catch((error) => {
-      capturarErro(error);
-    });
-  }
-  const usuarioNaoEncontrado = container.querySelector('#usuarioNaoEncontrado');
-  const senhaIncorreta = container.querySelector("#senhaIncorreta");
-  const emailIncorreto = container.querySelector("#emailIncorreto");
-
-  function capturarErro(error) {
-
-    usuarioNaoEncontrado.textContent = '';
-    senhaIncorreta.textContent = '';
-    emailIncorreto.textContent = '';
-
-    switch (error.code) {
-      case 'auth/user-not-found':
-        usuarioNaoEncontrado.textContent = 'Usuário não encontrado';
-        break;
-      case 'auth/invalid-email':
-        emailIncorreto.textContent = 'Email Inválido';
-        break;
-      case 'auth/wrong-password':
-        senhaIncorreta.textContent = 'Senha incorreta';
-        break;
-      default:
-        console.error(error);
-        break;
-    }
-  }
+  const botaoGoogle = container.querySelector('#logoGoogle');
   
-
-  function entrarComGoogle () {
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(googleProvider)
-    .then(() => {
-      window.location.hash = "#linhaDoTempo"
-    })
-    .catch(error => {
-      console.error(error);
-    })
-
-    
-  }
-
+  
   botaoGoogle.addEventListener('click', entrarComGoogle);
   botaoEntrar.addEventListener('click', login);
 
   return container;
 };
+const email = document.querySelector('#emailTelaInicial').value;
+const senha = document.querySelector('#senhaTelaInicial').value;
+
+export { email, senha };
