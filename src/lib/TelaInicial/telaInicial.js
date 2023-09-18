@@ -1,3 +1,4 @@
+
 export default () => {
   const container = document.createElement('div');
 
@@ -14,7 +15,9 @@ export default () => {
           <form >
           <div id="usuarioNaoEncontrado"></div>
           <label> <p id="emailDaTela">Email</p> <input id= "emailTelaInicial" type="email name="email"></input></label>
+          <div id="emailIncorreto"></div>
           <label> <p id="senhaDaTela">Senha</p> <input id= "senhaTelaInicial" type="password" name="senha"></input></label>
+          <div id="senhaIncorreta"></div>
           <button id="botaoEntrar">Entrar</button>
         </form>
         <nav>
@@ -33,6 +36,7 @@ export default () => {
   container.innerHTML = conteudo;
 
   const botaoEntrar = container.querySelector('#botaoEntrar');
+  const botaoGoogle = container.querySelector("#logoGoogle");
 
   function login(event) {
     event.preventDefault();
@@ -46,23 +50,46 @@ export default () => {
     });
   }
   const usuarioNaoEncontrado = container.querySelector('#usuarioNaoEncontrado');
+  const senhaIncorreta = container.querySelector("#senhaIncorreta");
+  const emailIncorreto = container.querySelector("#emailIncorreto");
+
   function capturarErro(error) {
+
     usuarioNaoEncontrado.textContent = '';
-    if (error.code == 'auth/user-not-found') {
-      usuarioNaoEncontrado.textContent = 'Usuário não encontrado';
-    } else {
-      return error.message;
+    senhaIncorreta.textContent = '';
+    emailIncorreto.textContent = '';
+
+    switch (error.code) {
+      case 'auth/user-not-found':
+        usuarioNaoEncontrado.textContent = 'Usuário não encontrado';
+        break;
+      case 'auth/invalid-email':
+        emailIncorreto.textContent = 'Email Inválido';
+        break;
+      case 'auth/wrong-password':
+        senhaIncorreta.textContent = 'Senha incorreta';
+        break;
+      default:
+        console.error(error);
+        break;
     }
   }
+  
 
-  botaoEntrar.addEventListener('click', login);
+  function entrarComGoogle () {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(googleProvider)
+    .then(() => {
+      window.location.hash = "#linhaDoTempo"
+    })
+    .catch(error => {
+      console.error(error);
+    })
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      window.location.hash = '#linhaDoTempo';
-    }
-  });
+    
+  }
 
+  botaoGoogle.addEventListener('click', entrarComGoogle);
   botaoEntrar.addEventListener('click', login);
 
   return container;

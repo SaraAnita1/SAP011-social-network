@@ -20,6 +20,10 @@ export default () => {
         <div id="mensagemErroSenha"></div>
         <label> <p class = "campoCadastro"> Confirmar senha </p> <input id="confirmarSenha" type="password" name="confirmarSenha"></input></label>
         <button type="button" id="criarContaCadastro">Criar conta</button>
+        <div id="entrarNaConta"
+        <p class="entrarConta"> Já tem conta? </p> 
+          <a id="botaoEntrarConta" href="#telaInicial">Entre agora</a>
+          </div>
       </form>
         </section>
         </div>
@@ -46,7 +50,7 @@ export default () => {
   }
   function capturarErro(error) {
     mensagemErro.textContent = "";
-    mensagemErroSenha.textContent = ""; // Limpa a mensagem de erro de senha
+    mensagemErroSenha.textContent = "";
     if (error.code === "auth/email-already-in-use") {
       mensagemErro.textContent = "Email já cadastrado";
     } else if (error.code === "auth/weak-password") {
@@ -55,13 +59,7 @@ export default () => {
   }
   
   botaoCadastro.addEventListener('click', cadastrarUsuario);
-
-  firebase.auth().onAuthStateChanged(function(user){
-    if(user) {
-      window.location.hash = "#linhaDoTempo"
-    }
-  })
-
+  
   return cadastro;
 
   }
