@@ -41,6 +41,15 @@ export default () => {
   const mensagemErro = cadastro.querySelector('#mensagemErro');
   const mensagemErroSenha = cadastro.querySelector('#mensagemErroSenha');
 
+  function capturarErroCadastro(error) {
+    mensagemErro.textContent = '';
+    mensagemErroSenha.textContent = '';
+    if (error.code === 'auth/email-already-in-use') {
+      mensagemErro.textContent = 'Email já cadastrado';
+    } else if (error.code === 'auth/weak-password') {
+      mensagemErroSenha.textContent = 'A senha deve conter no mínimo 6 dígitos';
+    }
+  }
   botaoCadastro.addEventListener('click', (event) => {
     event.preventDefault();
     const email = cadastro.querySelector('#email').value;
@@ -49,7 +58,7 @@ export default () => {
       window.location.hash = '#telaInicial';
       console.log('success', response);
     }).catch((error) => {
-      capturarErro(error);
+      capturarErroCadastro(error);
     });
   });
 

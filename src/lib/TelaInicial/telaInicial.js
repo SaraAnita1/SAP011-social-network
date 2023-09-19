@@ -1,4 +1,4 @@
-import { login, entrarComGoogle } from '../../Firebase/FirebaseAuth';
+import { login, entrarComGoogle } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const container = document.createElement('div');

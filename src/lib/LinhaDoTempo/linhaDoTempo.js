@@ -1,3 +1,5 @@
+import { sair, manterLogado, manterDeslogado } from '../../Firebase/FirebaseAuth.js';
+
 export default () => {
   const linhaDoTempo = document.createElement('div');
 
@@ -32,26 +34,28 @@ export default () => {
 
   linhaDoTempo.innerHTML = conteudo;
 
-  function sair(event) {
-    event.preventDefault();
-    firebase.auth().signOut().then(() => {
-      window.location.hash = '#telaInicial';
-    })
-      .catch(() => {
-        alert('Erro ao fazer logout');
-      });
-  }
 
-  firebase.auth().onAuthStateChanged((user) => {
+// funcao manter logado
+  manterLogado.then ((user) => {
     if (user) {
       window.location.hash = '#linhaDoTempo';
     }
   });
 
-  firebase.auth().onAuthStateChanged((user) => {
+  // funcao manter deslogado
+  manterDeslogado.then ((user) => {
     if (!user) {
       window.location.hash = '#telaInicial';
     }
+  });
+
+  // funcao sair
+  sair.then((event) => {
+    event.preventDefault()
+    window.location.hash = '#telaInicial';
+  })
+    .catch(() => {
+      alert('Erro ao fazer logout');
   });
 
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');
@@ -59,3 +63,7 @@ export default () => {
 
   return linhaDoTempo;
 };
+
+
+
+
