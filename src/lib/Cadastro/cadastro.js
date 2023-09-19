@@ -1,9 +1,11 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
+import { cadastrarUsuario } from '../../Firebase/FirebaseAuth';
+
 export default () => {
   const cadastro = document.createElement('div');
 
-  const conteudo = ` 
+  const conteudo = `
       <div id="conteudo-desktop-cadastro">
        <div id="cadastro-imagem-texto">
         <p id="texto1-desktop-cadastro">Conectados pela <br> nostalgia</p>
@@ -23,14 +25,14 @@ export default () => {
         <label> <p class = "campoCadastro"> Confirmar senha </p> <input id="confirmarSenha" type="password" name="confirmarSenha"></input></label>
         <button type="button" id="criarContaCadastro">Criar conta</button>
         <div id="entrarNaConta"
-        <p class="entrarConta"> Já tem conta? </p> 
+        <p class="entrarConta"> Já tem conta? </p>
           <a id="botaoEntrarConta" href="#telaInicial">Entre agora</a>
           </div>
       </form>
         </section>
         </div>
         </div>
-      
+
 `;
 
   cadastro.innerHTML = conteudo;
@@ -39,12 +41,17 @@ export default () => {
   const mensagemErro = cadastro.querySelector('#mensagemErro');
   const mensagemErroSenha = cadastro.querySelector('#mensagemErroSenha');
 
-  
-  botaoCadastro.addEventListener('click', cadastrarUsuario);
-  
+  botaoCadastro.addEventListener('click', (event) => {
+    event.preventDefault();
+    const email = cadastro.querySelector('#email').value;
+    const senha = cadastro.querySelector('#senha').value;
+    cadastrarUsuario(email, senha).then((response) => {
+      window.location.hash = '#telaInicial';
+      console.log('success', response);
+    }).catch((error) => {
+      capturarErro(error);
+    });
+  });
+
   return cadastro;
-  };
-  
-
-
-
+};

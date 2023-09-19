@@ -27,7 +27,7 @@ export default () => {
 </section>
 
 
-        
+
   `;
 
   linhaDoTempo.innerHTML = conteudo;
@@ -35,10 +35,10 @@ export default () => {
   function sair(event) {
     event.preventDefault();
     firebase.auth().signOut().then(() => {
-        window.location.hash = "#telaInicial";
-      })
+      window.location.hash = '#telaInicial';
+    })
       .catch(() => {
-        alert("Erro ao fazer logout");
+        alert('Erro ao fazer logout');
       });
   }
 
@@ -54,7 +54,7 @@ export default () => {
     }
   });
 
-  const botaoSair = linhaDoTempo.querySelector("#botaoSair");
+  const botaoSair = linhaDoTempo.querySelector('#botaoSair');
   botaoSair.addEventListener('click', sair);
 
   return linhaDoTempo;

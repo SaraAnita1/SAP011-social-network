@@ -1,6 +1,4 @@
-
 import { login, entrarComGoogle } from '../../Firebase/FirebaseAuth';
-
 
 export default () => {
   const container = document.createElement('div');
@@ -27,7 +25,7 @@ export default () => {
           <p id="entrarGoogle">Entre com sua conta Google</p>
           <img id="logoGoogle" src="imagens/logo google.png"></img>
           <div id="novaConta"
-            <p class="criarConta"> Não tem conta? </p> 
+            <p class="criarConta"> Não tem conta? </p>
               <a id="botaoCadastro" href="#cadastro">Crie agora</a>
               </div>
           </div>
@@ -36,21 +34,52 @@ export default () => {
         </div>
         `;
 
+  const usuarioNaoEncontrado = document.querySelector('#usuarioNaoEncontrado');
+  const senhaIncorreta = document.querySelector('#senhaIncorreta');
+  const emailIncorreto = document.querySelector('#emailIncorreto');
+
+  function capturarErro(error) {
+    usuarioNaoEncontrado.textContent = '';
+    senhaIncorreta.textContent = '';
+    emailIncorreto.textContent = '';
+
+    switch (error.code) {
+      case 'auth/user-not-found':
+        usuarioNaoEncontrado.textContent = 'Usuário não encontrado';
+        break;
+      case 'auth/invalid-email':
+        emailIncorreto.textContent = 'Email Inválido';
+        break;
+      case 'auth/wrong-password':
+        senhaIncorreta.textContent = 'Senha incorreta';
+        break;
+      default:
+        console.error(error);
+        break;
+    }
+  }
+
   container.innerHTML = conteudo;
   const email = container.querySelector('#emailTelaInicial');
   const senha = container.querySelector('#senhaTelaInicial');
   const botaoEntrar = container.querySelector('#botaoEntrar');
   const botaoGoogle = container.querySelector('#logoGoogle');
-  
-  
-  
-  botaoGoogle.addEventListener('click', entrarComGoogle);
-  botaoEntrar.addEventListener('click', (event)=>{
+
+  botaoGoogle.addEventListener('click', () => {
+    entrarComGoogle().then(() => {
+      window.location.hash = '#linhaDoTempo';
+    });
+  });
+
+  botaoEntrar.addEventListener('click', (event) => {
     event.preventDefault();
-    login(email.value,senha.value)
+    login(email.value, senha.value).then((response) => {
+      window.location.hash = '#linhaDoTempo';
+      console.log('success', response);
+    }).catch((error) => {
+      capturarErro(error);
+    });
   });
 
   return container;
 };
-
-
