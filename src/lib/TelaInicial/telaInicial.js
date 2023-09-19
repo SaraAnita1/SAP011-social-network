@@ -34,11 +34,10 @@ export default () => {
         </div>
         `;
 
-  const usuarioNaoEncontrado = document.querySelector('#usuarioNaoEncontrado');
-  const senhaIncorreta = document.querySelector('#senhaIncorreta');
-  const emailIncorreto = document.querySelector('#emailIncorreto');
-
   function capturarErro(error) {
+    const usuarioNaoEncontrado = document.querySelector('#usuarioNaoEncontrado');
+    const senhaIncorreta = document.querySelector('#senhaIncorreta');
+    const emailIncorreto = document.querySelector('#emailIncorreto');
     usuarioNaoEncontrado.textContent = '';
     senhaIncorreta.textContent = '';
     emailIncorreto.textContent = '';
@@ -65,9 +64,11 @@ export default () => {
   const botaoEntrar = container.querySelector('#botaoEntrar');
   const botaoGoogle = container.querySelector('#logoGoogle');
 
-  botaoGoogle.addEventListener('click', () => {
-    entrarComGoogle().then(() => {
+  botaoGoogle.addEventListener('click', (event) => {
+    event.preventDefault();
+    entrarComGoogle().then((result) => {
       window.location.hash = '#linhaDoTempo';
+      console.log('success', result);
     });
   });
 

@@ -34,36 +34,31 @@ export default () => {
 
   linhaDoTempo.innerHTML = conteudo;
 
+  // // funcao manter logado
+  // manterLogado().then((user) => {
+  //   if (user) {
+  //     window.location.hash = '#linhaDoTempo';
+  //   }
+  // });
 
-// funcao manter logado
-  manterLogado.then ((user) => {
-    if (user) {
-      window.location.hash = '#linhaDoTempo';
-    }
-  });
+  // // funcao manter deslogado
+  // manterDeslogado.then((user) => {
+  //   if (!user) {
+  //     window.location.hash = '#telaInicial';
+  //   }
+  // });
 
-  // funcao manter deslogado
-  manterDeslogado.then ((user) => {
-    if (!user) {
-      window.location.hash = '#telaInicial';
-    }
-  });
+  // // funcao sair
+  // sair.then((event) => {
+  //   event.preventDefault();
+  //   window.location.hash = '#telaInicial';
+  // })
+  //   .catch(() => {
+  //     alert('Erro ao fazer logout');
+  //   });
 
-  // funcao sair
-  sair.then((event) => {
-    event.preventDefault()
-    window.location.hash = '#telaInicial';
-  })
-    .catch(() => {
-      alert('Erro ao fazer logout');
-  });
-
-  const botaoSair = linhaDoTempo.querySelector('#botaoSair');
-  botaoSair.addEventListener('click', sair);
-
+  // const botaoSair = linhaDoTempo.querySelector('#botaoSair');
+  // botaoSair.addEventListener('click', sair);
+  // console.log(linhaDoTempo, 'socorro');
   return linhaDoTempo;
 };
-
-
-
-
