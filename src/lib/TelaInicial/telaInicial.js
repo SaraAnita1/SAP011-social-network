@@ -69,6 +69,8 @@ export default () => {
     entrarComGoogle().then((result) => {
       window.location.hash = '#linhaDoTempo';
       console.log('success', result);
+    }).catch((error) => {
+      console.error(error);
     });
   });
 

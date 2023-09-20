@@ -48,17 +48,15 @@ export default () => {
   //   }
   // });
 
-  // // funcao sair
-  // sair.then((event) => {
-  //   event.preventDefault();
-  //   window.location.hash = '#telaInicial';
-  // })
-  //   .catch(() => {
-  //     alert('Erro ao fazer logout');
-  //   });
-
-  // const botaoSair = linhaDoTempo.querySelector('#botaoSair');
-  // botaoSair.addEventListener('click', sair);
-  // console.log(linhaDoTempo, 'socorro');
+  // funcao sair
+  const botaoSair = linhaDoTempo.querySelector('#botaoSair');
+  botaoSair.addEventListener('click', (event)=>{
+  event.preventDefault();
+  sair().then((responde) => {
+    window.location.hash = '#telaInicial';
+  }).catch((error) => {
+      alert('Erro ao fazer logout');
+    });
+  })
   return linhaDoTempo;
 };
