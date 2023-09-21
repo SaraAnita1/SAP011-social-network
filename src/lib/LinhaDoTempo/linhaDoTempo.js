@@ -1,4 +1,5 @@
 import { sair,verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
+import { db } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
@@ -47,6 +48,6 @@ if(verificarStatusUsuario()){
   }).catch((error) => {
       alert('Erro ao fazer logout');
     });
-  })
+  });
   return linhaDoTempo;
 };

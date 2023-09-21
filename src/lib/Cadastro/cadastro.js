@@ -54,6 +54,7 @@ export default () => {
     event.preventDefault();
     const email = cadastro.querySelector('#email').value;
     const senha = cadastro.querySelector('#senha').value;
+    
     cadastrarUsuario(email, senha).then((response) => {
       window.location.hash = '#telaInicial';
       console.log('success', response);
