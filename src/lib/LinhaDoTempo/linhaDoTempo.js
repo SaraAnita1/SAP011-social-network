@@ -48,5 +48,10 @@ if(verificarStatusUsuario()){
       alert('Erro ao fazer logout');
     });
   })
+
+  const conteudoPublicacao = linhaDoTempo.querySelector("#caixaDeTextoPost");
+  const botaoPublicar = linhaDoTempo.querySelector("#botaoPublicar");
+
+  
   return linhaDoTempo;
 };
