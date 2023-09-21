@@ -16,9 +16,8 @@ export default () => {
           <form >
           <div id="usuarioNaoEncontrado"></div>
           <label> <p id="emailDaTela">Email</p> <input id= "emailTelaInicial" type="email name="email"></input></label>
-          <div id="emailIncorreto"></div>
           <label> <p id="senhaDaTela">Senha</p> <input id= "senhaTelaInicial" type="password" name="senha"></input></label>
-          <div id="senhaIncorreta"></div>
+          <div id="dadosIncorretos"></div>
           <button id="botaoEntrar">Entrar</button>
         </form>
         <nav>
@@ -36,21 +35,19 @@ export default () => {
 
   function capturarErro(error) {
     const usuarioNaoEncontrado = document.querySelector('#usuarioNaoEncontrado');
-    const senhaIncorreta = document.querySelector('#senhaIncorreta');
-    const emailIncorreto = document.querySelector('#emailIncorreto');
+    const dadosIncorretos = document.querySelector('#dadosIncorretos');
     usuarioNaoEncontrado.textContent = '';
-    senhaIncorreta.textContent = '';
-    emailIncorreto.textContent = '';
+    dadosIncorretos.textContent = '';
 
     switch (error.code) {
       case 'auth/user-not-found':
         usuarioNaoEncontrado.textContent = 'Usuário não encontrado';
         break;
       case 'auth/invalid-email':
-        emailIncorreto.textContent = 'Email Inválido';
+        dadosIncorretos.textContent = 'Email incorreto ou senha incorreta';
         break;
       case 'auth/wrong-password':
-        senhaIncorreta.textContent = 'Senha incorreta';
+        dadosIncorretos.textContent = 'Email incorreto ou senha incorreta';
         break;
       default:
         console.error(error);
