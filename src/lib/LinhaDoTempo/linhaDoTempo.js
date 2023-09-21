@@ -1,5 +1,6 @@
-import { sair,verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
-import { db } from '../../Firebase/FirebaseAuth.js';
+import { criarPublicacao } from '../../Firebase/Firestore.js';
+import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
+
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
@@ -32,22 +33,32 @@ export default () => {
 
   linhaDoTempo.innerHTML = conteudo;
 
-//Função para manter usuário logado e deslogado
-if(verificarStatusUsuario()){
-  window.location.hash = "#linhaDoTempo";
-} else {
-  window.location.hash = "#telaInicial";
-}
+  // Função para manter usuário logado e deslogado
+  if (verificarStatusUsuario()) {
+    window.location.hash = '#linhaDoTempo';
+  } else {
+    window.location.hash = '#telaInicial';
+  }
 
   // funcao sair
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');
-  botaoSair.addEventListener('click', (event)=>{
-  event.preventDefault();
-  sair().then((responde) => {
-    window.location.hash = '#telaInicial';
-  }).catch((error) => {
+  botaoSair.addEventListener('click', (event) => {
+    event.preventDefault();
+    sair().then((response) => {
+      window.location.hash = '#telaInicial';
+    }).catch((error) => {
       alert('Erro ao fazer logout');
     });
-  })
-  return linhaDoTempo;
+  });
+
+
+}
+const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
+botaoPublicar.addEventListener('click', (evento) => {
+  evento.preventDefault();
+  criarPublicacao();
+});
+
+return linhaDoTempo;
+
 };
