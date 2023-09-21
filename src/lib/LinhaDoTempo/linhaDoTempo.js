@@ -1,4 +1,4 @@
-import { sair, manterLogado, manterDeslogado } from '../../Firebase/FirebaseAuth.js';
+import { sair,verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
@@ -27,26 +27,16 @@ export default () => {
     </div>
   </div>
 </section>
-
-
-
   `;
 
   linhaDoTempo.innerHTML = conteudo;
 
-  // // funcao manter logado
-  // manterLogado().then((user) => {
-  //   if (user) {
-  //     window.location.hash = '#linhaDoTempo';
-  //   }
-  // });
-
-  // // funcao manter deslogado
-  // manterDeslogado.then((user) => {
-  //   if (!user) {
-  //     window.location.hash = '#telaInicial';
-  //   }
-  // });
+//Função para manter usuário logado e deslogado
+if(verificarStatusUsuario()){
+  window.location.hash = "#linhaDoTempo";
+} else {
+  window.location.hash = "#telaInicial";
+}
 
   // funcao sair
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');

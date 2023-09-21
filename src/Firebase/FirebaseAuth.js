@@ -1,5 +1,5 @@
 
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from './FirebaseConfig.js';
 
 export function login(email, senha) {
@@ -19,10 +19,7 @@ export function sair() {
   return signOut(auth);
 }
 
-export function manterLogado(user) {
-  return onAuthStateChanged(auth, user);
+export function verificarStatusUsuario() {
+  return auth.currentUser
 }
 
-export function manterDeslogado(user) {
-  return onAuthStateChanged(auth, user);
-}
