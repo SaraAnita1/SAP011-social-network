@@ -1,4 +1,5 @@
 import { sair,verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
+import { db } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
@@ -48,10 +49,5 @@ if(verificarStatusUsuario()){
       alert('Erro ao fazer logout');
     });
   })
-
-  const conteudoPublicacao = linhaDoTempo.querySelector("#caixaDeTextoPost");
-  const botaoPublicar = linhaDoTempo.querySelector("#botaoPublicar");
-
-  
   return linhaDoTempo;
 };
