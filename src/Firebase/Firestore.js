@@ -1,5 +1,5 @@
-import { collection } from 'Firebase/firestore';
 import { db } from '../../Firebase/FirebaseConfig.js';
+import { collection, getDocs } from "firebase/firestore";
 
 
 export function criarPublicacao(conteudoPublicacao) {
