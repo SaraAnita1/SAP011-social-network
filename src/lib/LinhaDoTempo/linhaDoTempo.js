@@ -1,4 +1,4 @@
-import { criarPublicacao } from '../../Firebase/Firestore.js';
+import { criarPublicacao, adicionarPublicacao,atualizarLinhaDoTempo } from '../../Firebase/Firestore.js';
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
@@ -18,7 +18,8 @@ export default () => {
     <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
   </div>
   <div id="publicacaoCriada">
-    <div id="ConteudoPublicacao">Conteudo publicado pelo usuário</div>
+    <div id="conteudoPublicacao">Conteudo publicado pelo usuário</div>
+    <div id="conteudoLinhaDoTempo"</div>
     <div id="iconesPublicacao">
       <img src="Imagens/iconeComentario.png" alt="Ícone Comentário">
       <img src="Imagens/iconeCurtir.png" alt="Ícone Curtida">
@@ -54,8 +55,11 @@ export default () => {
   botaoPublicar.addEventListener('click', (evento) => {
     const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
     evento.preventDefault();
-    criarPublicacao(conteudoPublicacao);
+    criarPublicacao(conteudoPublicacao)
+    adicionarPublicacao();
   });
+ 
+  atualizarLinhaDoTempo();
 
   return linhaDoTempo;
 };
