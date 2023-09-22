@@ -1,13 +1,16 @@
-import iniciarPagina from '../src/main.js';
+import { iniciarPagina } from '../src/main.js';
 import cadastro from '../src/lib/Cadastro/cadastro.js';
 import linhaDoTempo from '../src/lib/LinhaDoTempo/linhaDoTempo.js';
 import telaInicial from '../src/lib/TelaInicial/telaInicial.js';
 
+jest.mock('../src/lib/TelaInicial/telaInicial.js');
 describe('iniciarPagina', () => {
   it('deve chamar telaInicial quando a hash for vazia', () => {
+    iniciarPagina();
+    const event = new Event('hashchange');
+    window.dispatchEvent(event);
     window.location.hash = '';
     expect(telaInicial).toHaveBeenCalled();
-    iniciarPagina('#');
   });
 
   it('deve chamar cadastro quando a hash for "#cadastro"', () => {

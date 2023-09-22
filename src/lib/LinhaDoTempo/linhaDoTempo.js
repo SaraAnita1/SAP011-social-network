@@ -1,7 +1,6 @@
 import { criarPublicacao } from '../../Firebase/Firestore.js';
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
 
-
 export default () => {
   const linhaDoTempo = document.createElement('div');
 
@@ -44,21 +43,19 @@ export default () => {
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');
   botaoSair.addEventListener('click', (event) => {
     event.preventDefault();
-    sair().then((response) => {
+    sair().then(() => {
       window.location.hash = '#telaInicial';
-    }).catch((error) => {
+    }).catch(() => {
       alert('Erro ao fazer logout');
     });
   });
 
+  const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
+  botaoPublicar.addEventListener('click', (evento) => {
+    const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
+    evento.preventDefault();
+    criarPublicacao(conteudoPublicacao);
+  });
 
-}
-const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
-botaoPublicar.addEventListener('click', (evento) => {
-  evento.preventDefault();
-  criarPublicacao();
-});
-
-return linhaDoTempo;
-
+  return linhaDoTempo;
 };

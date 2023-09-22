@@ -4,7 +4,7 @@ import telaInicial from './lib/TelaInicial/telaInicial.js';
 
 const conteudo = document.querySelector('#conteudo');
 
-const iniciarPagina = () => {
+export const iniciarPagina = () => {
   window.addEventListener('hashchange', () => {
     conteudo.innerHTML = '';
     switch (window.location.hash) {

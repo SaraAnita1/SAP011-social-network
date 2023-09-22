@@ -1,13 +1,22 @@
-import { db } from '../../Firebase/FirebaseConfig.js';
-import { addDoc, collection, Timestamp, updateDoc } from "firebase/firestore";
+import {
+  addDoc, collection,
+} from 'firebase/firestore';
+import { db, auth } from './FirebaseConfig.js';
 
-export function criarPublicacao(conteudoPublicacao) {
-    const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
-    db.collection('Publicacoes').add({
-        texto: conteudoPublicacao, timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    }).then((response) => {
-        conteudoPublicacao.value = '';
-    }).catch((error) => {
-        alert('Erro ao criar publicação');
-    });
+export async function criarPublicacao(conteudoPublicacao) {
+  await addDoc(collection(db, 'publicacoes'), {
+
+    publicacao: conteudoPublicacao,
+    data: new Date(),
+    qntCurtidas: 0,
+    autor: auth.currentUser.displayName,
+  });
+
+  // db.collection('Publicacoes').add({
+  //     texto: conteudoPublicacao, timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  // }).then((response) => {
+  //     conteudoPublicacao.value = '';
+  // }).catch((error) => {
+  //     alert('Erro ao criar publicação');
+  // });
 }
