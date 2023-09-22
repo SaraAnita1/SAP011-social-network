@@ -1,9 +1,5 @@
 import { db } from '../../Firebase/FirebaseConfig.js';
-import { collection } from "firebase/firestore";
-import { addDoc, collection } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-
+import { addDoc, collection, Timestamp, updateDoc } from "firebase/firestore";
 
 export function criarPublicacao(conteudoPublicacao) {
     const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
