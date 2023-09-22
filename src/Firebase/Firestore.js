@@ -1,5 +1,8 @@
 import { db } from '../../Firebase/FirebaseConfig.js';
-import { collection, getDocs } from "firebase/firestore";
+import { collection } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 
 export function criarPublicacao(conteudoPublicacao) {
