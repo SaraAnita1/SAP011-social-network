@@ -20,14 +20,16 @@ export async function atualizarLinhaDoTempo(){
 const ordenar = query(collection(db, "publicacoes"), orderBy("data", "desc"))
 
 let querySnapshot = await getDocs(ordenar);
-console.log('querySnapshot',querySnapshot);
 const conteudoLinhaDoTempo = document.querySelector("#conteudoLinhaDoTempo");
+conteudoLinhaDoTempo.innerHTML = "";
 
 querySnapshot.forEach((doc) => {
+  console.log("desenhando ", doc.id);
  const autor = doc.data().autor;
  const conteudo = doc.data().publicacao;
  const data = doc.data().data;
  const curtidas = doc.data().qntCurtidas;
+ 
  const iconeEditar = document.createElement("img")
  iconeEditar.src = "Imagens/editar.png";
  const iconeSalvar = document.createElement("img")
@@ -59,14 +61,21 @@ querySnapshot.forEach((doc) => {
 });
 }
 
-const excluir = document.querySelector(".excluir");
-async function excluirPublicacao(publicacaoId){
-  await deleteDoc(doc(db, "publicacoes", "doc.id"));
-};
+// const excluir = document.querySelector(".excluir");
+// async function buscarDocumento (){
+// const querySnapshot = await getDocs(collection(db, "publicacoes"));
+// querySnapshot.forEach((doc) => {
+// const idPublicacao = doc.id;
+// });
+// }
+// async function excluirPublicacao(idPublicacao){
+//   await deleteDoc(doc(db, "publicacoes", "idPublicacao"));
+// };
 
-excluir.addEventListener("click", () => {
-  excluirPublicacao(doc.id);
-});
+
+// excluir.addEventListener("click", () => {
+//   excluirPublicacao(idPublicacao);
+// });
 
 
 

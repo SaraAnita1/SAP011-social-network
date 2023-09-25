@@ -56,8 +56,10 @@ export default () => {
     }
 
   });
-  
+
   atualizarLinhaDoTempo();
+  
 
   return linhaDoTempo;
 };
+

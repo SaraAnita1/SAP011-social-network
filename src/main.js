@@ -21,13 +21,15 @@ export const iniciarPagina = () => {
         conteudo.appendChild(telaInicial());
     }
   });
-  window.addEventListener('load', () => {
-    conteudo.appendChild(telaInicial());
-    iniciarPagina();
-  });
+
 };
 
-iniciarPagina();
+window.addEventListener('load', () => {
+  conteudo.appendChild(telaInicial());
+  iniciarPagina();
+});
+
+// iniciarPagina();
 
 // const botaoEntrar = document.querySelector('#botaoEntrar');
 // document.addEventListener('DOMContentLoaded', function() {
