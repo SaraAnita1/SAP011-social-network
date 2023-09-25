@@ -19,12 +19,13 @@ export const iniciarPagina = () => {
       default:
         conteudo.appendChild(telaInicial());
     }
+
+    window.addEventListener('load', () => {
+      conteudo.appendChild(telaInicial());
+      iniciarPagina();
+    });
   });
 };
-
-window.addEventListener('load', () => {
-  iniciarPagina();
-});
 
 // iniciarPagina();
 
