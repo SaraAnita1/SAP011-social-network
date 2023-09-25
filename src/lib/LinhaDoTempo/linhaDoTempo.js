@@ -17,15 +17,7 @@ export default () => {
     <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
     <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
   </div>
-  <div id="publicacaoCriada">
     <div id="conteudoLinhaDoTempo"</div>
-    <div id="iconesPublicacao">
-      <img src="Imagens/iconeComentario.png" alt="Ícone Comentário">
-      <img src="Imagens/iconeCurtir.png" alt="Ícone Curtida">
-      <img src="Imagens/editar.png" alt="Ícone Lápis">
-      <img src="Imagens/iconeSalvar.png" alt="Ícone Salvar">
-      <img src="Imagens/Lixeira.png" alt="Ícone Lixeira">
-    </div>
   </div>
 </section>
   `;
