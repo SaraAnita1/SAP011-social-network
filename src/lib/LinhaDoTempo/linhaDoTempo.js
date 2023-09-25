@@ -1,4 +1,4 @@
-import { criarPublicacao, adicionarPublicacao,atualizarLinhaDoTempo } from '../../Firebase/Firestore.js';
+import { criarPublicacao,atualizarLinhaDoTempo } from '../../Firebase/Firestore.js';
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
@@ -18,12 +18,11 @@ export default () => {
     <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
   </div>
   <div id="publicacaoCriada">
-    <div id="conteudoPublicacao">Conteudo publicado pelo usuário</div>
     <div id="conteudoLinhaDoTempo"</div>
     <div id="iconesPublicacao">
       <img src="Imagens/iconeComentario.png" alt="Ícone Comentário">
       <img src="Imagens/iconeCurtir.png" alt="Ícone Curtida">
-      <img src="Imagens/iconeLapis.png" alt="Ícone Lápis">
+      <img src="Imagens/editar.png" alt="Ícone Lápis">
       <img src="Imagens/iconeSalvar.png" alt="Ícone Salvar">
       <img src="Imagens/Lixeira.png" alt="Ícone Lixeira">
     </div>
@@ -32,6 +31,7 @@ export default () => {
   `;
 
   linhaDoTempo.innerHTML = conteudo;
+
 
   // Função para manter usuário logado e deslogado
   if (verificarStatusUsuario()) {
@@ -51,14 +51,20 @@ export default () => {
     });
   });
 
+  //função criar publicacao e adicionar a linha do tempo
   const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
   botaoPublicar.addEventListener('click', (evento) => {
     const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
     evento.preventDefault();
-    criarPublicacao(conteudoPublicacao)
-    adicionarPublicacao();
+    if(conteudoPublicacao == ""){
+      return alert("O campo de postagem não pode ser enviado vazio!")
+    } else{
+      criarPublicacao(conteudoPublicacao)
+      atualizarLinhaDoTempo();
+    }
+
   });
- 
+  
   atualizarLinhaDoTempo();
 
   return linhaDoTempo;
