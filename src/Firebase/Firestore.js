@@ -1,8 +1,7 @@
 import {
-  addDoc, collection,query, getDocs, orderBy,
+  addDoc, collection, query, getDocs, orderBy,
 } from 'firebase/firestore';
 import { db, auth } from './FirebaseConfig.js';
-
 
 export async function criarPublicacao(conteudoPublicacao) {
   await addDoc(collection(db, 'publicacoes'), {
@@ -13,7 +12,6 @@ export async function criarPublicacao(conteudoPublicacao) {
     autor: auth.currentUser.displayName,
 
   });
-
 }
 
 // export async function adicionarPublicacao(Publicacoes){
@@ -28,24 +26,22 @@ export async function criarPublicacao(conteudoPublicacao) {
 // });
 // }
 
+export async function atualizarLinhaDoTempo() {
+  const ordenar = query(collection(db, 'publicacoes'), orderBy('data', 'desc'));
 
-export async function atualizarLinhaDoTempo(){
-const ordenar = query(collection(db, "publicacoes"), orderBy("data", "desc"))
+  const querySnapshot = await getDocs(ordenar);
+  console.log('querySnapshot', querySnapshot);
+  const conteudoLinhaDoTempo = document.querySelector('#conteudoLinhaDoTempo');
 
-let querySnapshot = await getDocs(ordenar);
-console.log('querySnapshot',querySnapshot);
-const conteudoLinhaDoTempo = document.querySelector("#conteudoLinhaDoTempo");
+  querySnapshot.forEach((doc) => {
+    const autor = doc.data().autor;
+    const conteudo = doc.data().publicacao;
+    const data = doc.data().data;
+    const curtidas = doc.data().qntCurtidas;
 
-querySnapshot.forEach((doc) => {
- const autor = doc.data().autor;
- const conteudo = doc.data().publicacao;
- const data = doc.data().data;
- const curtidas = doc.data().qntCurtidas;
-
- const postagens = document.createElement("div");
- postagens.textContent = `${autor}: ${conteudo} ${data} ${curtidas}`;
- conteudoLinhaDoTempo.appendChild(postagens);
- postagens.className = "postagens"
-});
+    const postagens = document.createElement('div');
+    postagens.textContent = `${autor}: ${conteudo} ${data} ${curtidas}`;
+    conteudoLinhaDoTempo.appendChild(postagens);
+    postagens.className = 'postagens';
+  });
 }
-

@@ -11,7 +11,7 @@ export default () => {
         e velho pra ser jovem, junte se a nós!</p>
         </div>
         <div>
-          <h1 id= "tituloPagina"class="tituloPagina">BUG DOS <br> MILLENNIALS</h1>
+          <h1 id= "tituloPagina"class="tituloPagina">BUG DOS<br>MILLENNIALS</h1>
         <section id="fundoTelaInicial">
           <form >
           <div id="usuarioNaoEncontrado"></div>
