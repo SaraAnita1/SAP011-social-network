@@ -24,11 +24,11 @@ const conteudoLinhaDoTempo = document.querySelector("#conteudoLinhaDoTempo");
 conteudoLinhaDoTempo.innerHTML = "";
 
 querySnapshot.forEach((doc) => {
-  console.log("desenhando ", doc.id);
  const autor = doc.data().autor;
  const conteudo = doc.data().publicacao;
  const data = doc.data().data;
  const curtidas = doc.data().qntCurtidas;
+
  
  const iconeEditar = document.createElement("img")
  iconeEditar.src = "Imagens/editar.png";
@@ -59,23 +59,61 @@ querySnapshot.forEach((doc) => {
  iconeCurtida.className = "curtida"
 
 });
+
+
+let idPublicacao;
+async function buscarDocumento (){
+const querySnapshot = await getDocs(collection(db, "publicacoes"));
+querySnapshot.forEach((doc) => {
+  return idPublicacao = doc.id; 
+
+});
+
+console.log("teste", idPublicacao);
 }
 
-// const excluir = document.querySelector(".excluir");
+buscarDocumento();
+
+const excluir = document.querySelector(".excluir");
+excluir.addEventListener("click", () => {
+db.collection("publicacoes").doc("idPublicacao").delete(publicacoes.publicacao).then(() => {
+  console.log("Document successfully deleted!");
+}).catch((error) => {
+  console.error("Error removing document: ", error);
+});
+
+})
+}
+
+// let idPublicacao;
 // async function buscarDocumento (){
 // const querySnapshot = await getDocs(collection(db, "publicacoes"));
 // querySnapshot.forEach((doc) => {
-// const idPublicacao = doc.id;
+//   return idPublicacao = doc.id; 
+
 // });
+
+// console.log("teste", idPublicacao);
 // }
+
+// buscarDocumento();
+
 // async function excluirPublicacao(idPublicacao){
 //   await deleteDoc(doc(db, "publicacoes", "idPublicacao"));
+//   buscarDocumento(idPublicacao);
 // };
 
-
+// const excluir = document.querySelector(".excluir");
 // excluir.addEventListener("click", () => {
 //   excluirPublicacao(idPublicacao);
 // });
 
+// const excluir = document.querySelector(".excluir");
+// excluir.addEventListener("click", () => {
+// db.collection("publicacoes").doc("idPublicacao").delete().then(() => {
+//   console.log("Document successfully deleted!");
+// }).catch((error) => {
+//   console.error("Error removing document: ", error);
+// });
 
-
+// })
