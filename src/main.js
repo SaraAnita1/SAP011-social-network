@@ -23,7 +23,6 @@ export const iniciarPagina = () => {
 
   });
 };
-
 window.addEventListener('load', () => {
   const conteudo = document.querySelector('#conteudo');
   conteudo.appendChild(telaInicial())

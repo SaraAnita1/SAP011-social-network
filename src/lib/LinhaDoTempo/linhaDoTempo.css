@@ -44,6 +44,11 @@ body {
     margin: auto;
   }
 
+  #criarPostContainer{
+   display:none
+  }
+
+
 #feed{
     background: #FAFAFA;
     width: 90%;
@@ -93,6 +98,12 @@ body {
     margin-top:-190px;
 }
 
+#iconeCriarPostagem{
+    width: 130px;
+    height: 80px;
+    margin-left: -80px;
+    margin-top: 70px;
+}
 /* #conteudoLinhaDotempo{
     width: 100%;
     display: inline-block;

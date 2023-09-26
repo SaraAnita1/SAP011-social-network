@@ -57,9 +57,26 @@ export default () => {
 
   });
 
+
+    // função para mostrar e esconder caixa de texto para inserção de post
+const iconeCaixaDePostagem = linhaDoTempo.querySelector("#iconeCriarPostagem");
+
+iconeCaixaDePostagem.addEventListener("click", abrirCaixaDeTextoPostagem);
+
+function abrirCaixaDeTextoPostagem() {
+  const caixaDeTextoPostagem = linhaDoTempo.querySelector("#criarPostContainer");
+
+  if (caixaDeTextoPostagem.style.display === "block") {
+    caixaDeTextoPostagem.style.display = "none";
+  } else {
+    caixaDeTextoPostagem.style.display = "block";
+  }
+}
+
+//chama a função novamente para redenrizar os componentes na tela
   atualizarLinhaDoTempo();
-  
 
   return linhaDoTempo;
+  
 };
 
