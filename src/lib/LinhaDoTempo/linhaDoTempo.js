@@ -1,4 +1,4 @@
-import { criarPublicacao,atualizarLinhaDoTempo } from '../../Firebase/Firestore.js';
+import { criarPublicacao,atualizarLinhaDoTempo, } from '../../Firebase/Firestore.js';
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
