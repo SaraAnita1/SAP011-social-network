@@ -2,10 +2,9 @@ import cadastro from './lib/Cadastro/cadastro.js';
 import linhaDoTempo from './lib/LinhaDoTempo/linhaDoTempo.js';
 import telaInicial from './lib/TelaInicial/telaInicial.js';
 
-const conteudo = document.querySelector('#conteudo');
-
 export const iniciarPagina = () => {
   window.addEventListener('hashchange', () => {
+    const conteudo = document.querySelector('#conteudo');
     conteudo.innerHTML = '';
     switch (window.location.hash) {
       case '':
@@ -20,14 +19,13 @@ export const iniciarPagina = () => {
       default:
         conteudo.appendChild(telaInicial());
     }
+
+    window.addEventListener('load', () => {
+      conteudo.appendChild(telaInicial());
+      iniciarPagina();
+    });
   });
-
 };
-
-window.addEventListener('load', () => {
-  conteudo.appendChild(telaInicial());
-  iniciarPagina();
-});
 
 // iniciarPagina();
 

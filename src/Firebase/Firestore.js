@@ -1,8 +1,7 @@
 import {
-  addDoc, collection,query, getDocs, orderBy, deleteDoc,
+  addDoc, collection, query, getDocs, orderBy,
 } from 'firebase/firestore';
 import { db, auth } from './FirebaseConfig.js';
-
 
 export async function criarPublicacao(conteudoPublicacao) {
   await addDoc(collection(db, 'publicacoes'), {
@@ -13,22 +12,21 @@ export async function criarPublicacao(conteudoPublicacao) {
     autor: auth.currentUser.displayName,
 
   });
-
 }
 
-export async function atualizarLinhaDoTempo(){
-const ordenar = query(collection(db, "publicacoes"), orderBy("data", "desc"))
+export async function atualizarLinhaDoTempo() {
+  const ordenar = query(collection(db, 'publicacoes'), orderBy('data', 'desc'));
 
-let querySnapshot = await getDocs(ordenar);
-const conteudoLinhaDoTempo = document.querySelector("#conteudoLinhaDoTempo");
-conteudoLinhaDoTempo.innerHTML = "";
+  const querySnapshot = await getDocs(ordenar);
+  const conteudoLinhaDoTempo = document.querySelector('#conteudoLinhaDoTempo');
+  conteudoLinhaDoTempo.innerHTML = '';
 
 querySnapshot.forEach((doc) => {
+  console.log("desenhando ", doc.id);
  const autor = doc.data().autor;
  const conteudo = doc.data().publicacao;
  const data = doc.data().data;
  const curtidas = doc.data().qntCurtidas;
-
  
  const iconeEditar = document.createElement("img")
  iconeEditar.src = "Imagens/editar.png";
@@ -59,33 +57,9 @@ querySnapshot.forEach((doc) => {
  iconeCurtida.className = "curtida"
 
 });
-
-
-let idPublicacao;
-async function buscarDocumento (){
-const querySnapshot = await getDocs(collection(db, "publicacoes"));
-querySnapshot.forEach((doc) => {
-  return idPublicacao = doc.id; 
-
-});
-
-console.log("teste", idPublicacao);
 }
 
-buscarDocumento();
-
-const excluir = document.querySelector(".excluir");
-excluir.addEventListener("click", () => {
-db.collection("publicacoes").doc("idPublicacao").delete(publicacoes.publicacao).then(() => {
-  console.log("Document successfully deleted!");
-}).catch((error) => {
-  console.error("Error removing document: ", error);
-});
-
-})
-}
-
-// let idPublicacao;
+// const excluir = document.querySelector(".excluir");
 // async function buscarDocumento (){
 // const querySnapshot = await getDocs(collection(db, "publicacoes"));
 // querySnapshot.forEach((doc) => {
@@ -103,17 +77,10 @@ db.collection("publicacoes").doc("idPublicacao").delete(publicacoes.publicacao).
 //   buscarDocumento(idPublicacao);
 // };
 
-// const excluir = document.querySelector(".excluir");
+
 // excluir.addEventListener("click", () => {
 //   excluirPublicacao(idPublicacao);
 // });
 
-// const excluir = document.querySelector(".excluir");
-// excluir.addEventListener("click", () => {
-// db.collection("publicacoes").doc("idPublicacao").delete().then(() => {
-//   console.log("Document successfully deleted!");
-// }).catch((error) => {
-//   console.error("Error removing document: ", error);
-// });
 
-// })
+
