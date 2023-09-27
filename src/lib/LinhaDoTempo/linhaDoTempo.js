@@ -52,7 +52,7 @@ export default () => {
       return alert("O campo de postagem não pode ser enviado vazio!")
     } else{
       criarPublicacao(conteudoPublicacao)
-      atualizarLinhaDoTempo();
+      atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
     }
 
   });
@@ -74,7 +74,48 @@ function abrirCaixaDeTextoPostagem() {
 }
 
 //chama a função novamente para redenrizar os componentes na tela
-  atualizarLinhaDoTempo();
+atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+
+function limparTela(){
+const conteudoLinhaDoTempo = document.querySelector("#conteudoLinhaDoTempo");
+conteudoLinhaDoTempo.innerHTML = "";
+}
+
+function criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao){
+
+  //Criação dos elementos de post e icones de forma dinamica
+const iconeEditar = document.createElement("img")
+iconeEditar.src = "Imagens/editar.png";
+const iconeSalvar = document.createElement("img")
+iconeSalvar.src = "Imagens/IconeSalvar.png"
+const iconeLixeira = document.createElement("img")
+iconeLixeira.src = "Imagens/Lixeira.png"
+
+//o valor do documento é guardado em cada icone de lixeira
+// para quando houver o clique saber qual o id do documento clicacdo
+iconeLixeira.setAttribute ("data-postId", idPublicacao)
+const iconeCurtir = document.createElement("img")
+iconeCurtir.src = "Imagens/iconeCurtir.png"
+const iconeCurtida = document.createElement("img")
+iconeCurtida.src = "Imagens/iconeCurtida.png"
+
+//inserindo os elementos criados no conteúdo da div de post criada no HTML
+const postagens = document.createElement("div");
+postagens.textContent = `${autor}: ${conteudo} ${data} ${curtidas}`;
+conteudoLinhaDoTempo.appendChild(postagens);
+conteudoLinhaDoTempo.appendChild(iconeEditar);
+conteudoLinhaDoTempo.appendChild(iconeSalvar);
+conteudoLinhaDoTempo.appendChild(iconeLixeira);
+conteudoLinhaDoTempo.appendChild(iconeCurtir);
+conteudoLinhaDoTempo.appendChild(iconeCurtida);
+
+postagens.className = "postagens"
+iconeEditar.className = "editar"
+iconeSalvar.className = "salvar"
+iconeLixeira.className = "excluir"
+iconeCurtir.className = "curtir"
+iconeCurtida.className = "curtida"
+}
 
   return linhaDoTempo;
   
