@@ -64,14 +64,14 @@ body {
 #botaoEntrar {
     border-radius: 8px;
     background: #D2398A;
-    width: 282px;
-    height: 88px;
+    width: 200px;
+    height: 60px;
     color: #FFF;
     font-family: Inter, sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-style: normal;
     font-weight: 700px;
-    margin-left: 125px;
+    margin-left: 110px;
     padding: 8px 35px 8px 35px;
     text-decoration: none;
 }
@@ -88,8 +88,8 @@ body {
 }
 
 nav img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
     margin-left: 175px;
     margin-top: 5px;

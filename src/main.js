@@ -3,7 +3,6 @@ import linhaDoTempo from './lib/LinhaDoTempo/linhaDoTempo.js';
 import telaInicial from './lib/TelaInicial/telaInicial.js';
 
 export const iniciarPagina = () => {
-  console.log("iniciando pagina");
   window.addEventListener('hashchange', () => {
     const conteudo = document.querySelector('#conteudo');
     conteudo.innerHTML = '';

@@ -40,8 +40,8 @@ body {
   #caixaDeTextoPost {
     width: 400px; 
     height: 250px;
-    margin-bottom: 10px; 
-    margin: auto;
+    margin-bottom: 5px; 
+    margin-left: 40px;
   }
 
   #criarPostContainer{
@@ -50,6 +50,8 @@ body {
 
 
 #feed{
+    padding-top: 30px;
+    padding-bottom: 30px;
     background: #FAFAFA;
     width: 90%;
     height:100%;
@@ -88,10 +90,10 @@ body {
 .curtida{
 
     display:block;
-    width: 25px;
-    height: 30px;
-    margin-top: 10px;
-    margin-left: 470px;
+    width: 27px;
+    height: 27px;
+    margin-top: 5px;
+    margin-left: 440px;
 }
 
 .editar{
