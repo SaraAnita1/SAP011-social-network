@@ -1,7 +1,11 @@
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
+import { cadastrarUsuario } from '../../Firebase/FirebaseAuth';
+
 export default () => {
   const cadastro = document.createElement('div');
 
-  const conteudo = ` 
+  const conteudo = `
       <div id="conteudo-desktop-cadastro">
        <div id="cadastro-imagem-texto">
         <p id="texto1-desktop-cadastro">Conectados pela <br> nostalgia</p>
@@ -20,52 +24,44 @@ export default () => {
         <div id="mensagemErroSenha"></div>
         <label> <p class = "campoCadastro"> Confirmar senha </p> <input id="confirmarSenha" type="password" name="confirmarSenha"></input></label>
         <button type="button" id="criarContaCadastro">Criar conta</button>
+        <div id="entrarNaConta"
+        <p class="entrarConta"> Já tem conta? </p>
+          <a id="botaoEntrarConta" href="#telaInicial">Entre agora</a>
+          </div>
       </form>
         </section>
         </div>
         </div>
-      
+
 `;
 
   cadastro.innerHTML = conteudo;
 
-  const botaoCadastro = cadastro.querySelector("#criarContaCadastro");
-  const mensagemErro = cadastro.querySelector("#mensagemErro");
-  const mensagemErroSenha = cadastro.querySelector("#mensagemErroSenha");
+  const botaoCadastro = cadastro.querySelector('#criarContaCadastro');
+  const mensagemErro = cadastro.querySelector('#mensagemErro');
+  const mensagemErroSenha = cadastro.querySelector('#mensagemErroSenha');
 
-  function cadastrarUsuario(event) {
+  function capturarErroCadastro(error) {
+    mensagemErro.textContent = '';
+    mensagemErroSenha.textContent = '';
+    if (error.code === 'auth/email-already-in-use') {
+      mensagemErro.textContent = 'Email já cadastrado';
+    } else if (error.code === 'auth/weak-password') {
+      mensagemErroSenha.textContent = 'A senha deve conter no mínimo 6 dígitos';
+    }
+  }
+  botaoCadastro.addEventListener('click', (event) => {
     event.preventDefault();
-    const email = cadastro.querySelector("#email").value;
-    const senha = cadastro.querySelector("#senha").value;
-    firebase.auth().createUserWithEmailAndPassword(email, senha).then(response =>{
-      window.location.hash = '#telaInicial';
-      console.log('success', response)
-    }).catch(error => {
-    capturarErro(error);
-    })
-  }
-  function capturarErro(error) {
-    mensagemErro.textContent = "";
-    mensagemErroSenha.textContent = ""; // Limpa a mensagem de erro de senha
-    if (error.code === "auth/email-already-in-use") {
-      mensagemErro.textContent = "Email já cadastrado";
-    } else if (error.code === "auth/weak-password") {
-      mensagemErroSenha.textContent = "A senha deve conter no mínimo 6 dígitos";
-    }
-  }
-  
-  botaoCadastro.addEventListener('click', cadastrarUsuario);
+    const email = cadastro.querySelector('#email').value;
+    const senha = cadastro.querySelector('#senha').value;
 
-  firebase.auth().onAuthStateChanged(function(user){
-    if(user) {
-      window.location.hash = "#linhaDoTempo"
-    }
-  })
+    cadastrarUsuario(email, senha).then((response) => {
+      window.location.hash = '#telaInicial';
+      console.log('success', response);
+    }).catch((error) => {
+      capturarErroCadastro(error);
+    });
+  });
 
   return cadastro;
-
-  }
-  
-
-
-
+};

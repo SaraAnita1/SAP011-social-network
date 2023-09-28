@@ -1,4 +1,114 @@
 body {
-    border-radius: 8px;
-    background: #E7DBE1;
+    background-color: #D9BACA;
 }
+
+#headerContainer{
+    display: flex;
+ 
+}
+
+#usuarioPostagem{
+    display: flex; 
+}
+
+.nomeUsuario{
+    color: #D2398A;
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    width: 170px;
+    height: 44px;
+    margin-top: 100px;
+    margin-left: 30px;
+
+}
+
+#botaoSair{
+    border: none;
+    background:#D9BACA;
+    font-size: 25px;
+    margin-left: 175px;
+    margin-top: 80px;
+}
+
+#criarPostContainer {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column; 
+  }
+
+  #caixaDeTextoPost {
+    width: 400px; 
+    height: 250px;
+    margin-bottom: 5px; 
+    margin-left: 40px;
+  }
+
+  #criarPostContainer{
+   display:none
+  }
+
+
+#feed{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: #FAFAFA;
+    width: 90%;
+    height:100%;
+    display: block;
+    margin: auto;
+}
+
+.botaoPublicar {
+    font-size: 20px;
+    margin-left: 350px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: #000000 solid 1px;
+    background: #E7DBE1;
+    padding: 5px 10px 5px 10px;
+    width: 100px;
+    
+}
+
+.postagens{
+    display: flex;
+    font-size: 18px;
+    color: black;
+    font-family: 'Inter', sans-serif;
+    align-items: center;
+    margin: 40px 40px 40px 40px;
+    border: 2px solid #000;
+    margin-right: 100px;
+    padding:40px 30px 50px 10px;
+}
+
+.editar,
+.salvar,
+.excluir,
+.curtir, 
+.curtida{
+
+    display:block;
+    width: 27px;
+    height: 27px;
+    margin-top: 5px;
+    margin-left: 440px;
+}
+
+.editar{
+    margin-top:-190px;
+}
+
+#iconeCriarPostagem{
+    width: 130px;
+    height: 80px;
+    margin-left: -80px;
+    margin-top: 70px;
+}
+/* #conteudoLinhaDotempo{
+    width: 100%;
+    display: inline-block;
+} */
+
+
