@@ -1,5 +1,6 @@
-import { criarPublicacao,atualizarLinhaDoTempo, } from '../../Firebase/Firestore.js';
+import { criarPublicacao,atualizarLinhaDoTempo, excluirPublicacao} from '../../Firebase/Firestore.js';
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
+import { updateCurrentUser } from 'firebase/auth';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
@@ -23,7 +24,6 @@ export default () => {
   `;
 
   linhaDoTempo.innerHTML = conteudo;
-
 
   // Função para manter usuário logado e deslogado
   if (verificarStatusUsuario()) {
@@ -58,7 +58,7 @@ export default () => {
   });
 
 
-    // função para mostrar e esconder caixa de texto para inserção de post
+// função para mostrar e esconder caixa de texto para inserção de post
 const iconeCaixaDePostagem = linhaDoTempo.querySelector("#iconeCriarPostagem");
 
 iconeCaixaDePostagem.addEventListener("click", abrirCaixaDeTextoPostagem);
@@ -77,13 +77,12 @@ function abrirCaixaDeTextoPostagem() {
 atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
 
 function limparTela(){
-const conteudoLinhaDoTempo = document.querySelector("#conteudoLinhaDoTempo");
+const conteudoLinhaDoTempo = linhaDoTempo.querySelector("#conteudoLinhaDoTempo");
 conteudoLinhaDoTempo.innerHTML = "";
 }
 
 function criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao){
-
-  //Criação dos elementos de post e icones de forma dinamica
+//Criação dos elementos de post e icones de forma dinamica
 const iconeEditar = document.createElement("img")
 iconeEditar.src = "Imagens/editar.png";
 const iconeSalvar = document.createElement("img")
@@ -115,7 +114,18 @@ iconeSalvar.className = "salvar"
 iconeLixeira.className = "excluir"
 iconeCurtir.className = "curtir"
 iconeCurtida.className = "curtida"
-}
+
+iconeLixeira.addEventListener("click", (event) => {
+  //constante que pega o valor do id do documento que está
+  // armszenado no icone da lixeira, no evento de clique.
+    const idPost = event.target.dataset.postid;
+    excluirPublicacao(idPost);
+    atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+  })
+};
+
+// const excluir = linhaDoTempo.querySelector(".excluir");
+
 
   return linhaDoTempo;
   

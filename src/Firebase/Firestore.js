@@ -19,7 +19,7 @@ export async function criarPublicacao(conteudoPublicacao) {
 //Função que insere que busca o post no firebase e insere na tela
 export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela){
 const ordenar = query(collection(db, "publicacoes"), orderBy("data", "desc"))
-limparTela();
+limparTela()
 let querySnapshot = await getDocs(ordenar);
 querySnapshot.forEach((doc) => {
  const autor = doc.data().autor;
@@ -32,17 +32,11 @@ querySnapshot.forEach((doc) => {
  criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao);
 
 });
+}
 
 //Função de exclusão do post ao clicar no icone de lixeira
-const excluir = document.querySelector(".excluir");
-excluir.addEventListener("click", (event) => {
-//constante que pega o valor do id do documento que está
-// armszenado no icone da lixeira, no evento de clique.
-  const idPost = event.target.dataset.postid;
-  excluirPublicacao(idPost);
-  atualizarLinhaDoTempo();
-})
-}
+
+
 
 //Função do firestore para exclusão do post
 export async function excluirPublicacao(idPublicacao){
