@@ -85,8 +85,10 @@ function criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao){
 //Criação dos elementos de post e icones de forma dinamica
 const iconeEditar = document.createElement("img")
 iconeEditar.src = "Imagens/editar.png";
+iconeEditar.setAttribute ("data-postId", idPublicacao);
 const iconeSalvar = document.createElement("img")
 iconeSalvar.src = "Imagens/IconeSalvar.png"
+iconeSalvar.setAttribute ("data-postId", idPublicacao);
 const iconeLixeira = document.createElement("img")
 iconeLixeira.src = "Imagens/Lixeira.png"
 
@@ -122,9 +124,17 @@ iconeLixeira.addEventListener("click", (event) => {
     excluirPublicacao(idPost);
     atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
   })
+
+  iconeEditar.addEventListener("click", (event) =>{
+    const idPost = event.target.dataset.posid;
+    const editarPost = document.createElement('input');
+    editarPost.value = postagens.innerText;
+    postagens.parentNode.replaceChild(editarPost, postagens)
+    editarPost.className = "caixaDeEdicao";
+  })
 };
 
-// const excluir = linhaDoTempo.querySelector(".excluir");
+
 
 
   return linhaDoTempo;

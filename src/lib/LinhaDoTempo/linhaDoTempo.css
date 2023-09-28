@@ -57,6 +57,7 @@ body {
     height:100%;
     display: block;
     margin: auto;
+    /* height: 100vh; */
 }
 
 .botaoPublicar {
@@ -110,5 +111,18 @@ body {
     width: 100%;
     display: inline-block;
 } */
+
+.caixaDeEdicao{
+    width: 88%;
+    display: flex;
+    font-size: 18px;
+    color: black;
+    font-family: 'Inter', sans-serif;
+    align-items: center;
+    margin: 40px 40px 40px 40px;
+    border: 2px solid #000;
+    margin-right: 100px;
+    padding:40px 30px 50px 10px;
+}
 
 
