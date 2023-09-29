@@ -1,4 +1,4 @@
-import { criarPublicacao,atualizarLinhaDoTempo, excluirPublicacao} from '../../Firebase/Firestore.js';
+import { criarPublicacao,atualizarLinhaDoTempo, excluirPublicacao, editarPublicacao} from '../../Firebase/Firestore.js';
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
 import { updateCurrentUser } from 'firebase/auth';
 
@@ -8,7 +8,7 @@ export default () => {
   const conteudo = `
   <div id="headerContainer">
   <div id="usuarioPostagem">
-    <p class="nomeUsuario">Usuário</p>
+    <p class="nomeUsuario">Olá Millennial!</p>
     <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
   </div>
   <button id="botaoSair">Sair</button>
@@ -36,6 +36,7 @@ export default () => {
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');
   botaoSair.addEventListener('click', (event) => {
     event.preventDefault();
+    if(window.confirm("Deseja encerrar sua sessão?"))
     sair().then(() => {
       window.location.hash = '#telaInicial';
     }).catch(() => {
@@ -49,7 +50,7 @@ export default () => {
     const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
     evento.preventDefault();
     if(conteudoPublicacao == ""){
-      return alert("O campo de postagem não pode ser enviado vazio!")
+      return alert("Olá, Millennial! Insira alguma mensagem no campo texto e compartilhe com a comunidade! Vamos lá?")
     } else{
       criarPublicacao(conteudoPublicacao)
       atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
@@ -81,7 +82,7 @@ const conteudoLinhaDoTempo = linhaDoTempo.querySelector("#conteudoLinhaDoTempo")
 conteudoLinhaDoTempo.innerHTML = "";
 }
 
-function criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao){
+function criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, idPublicacao){
 //Criação dos elementos de post e icones de forma dinamica
 const iconeEditar = document.createElement("img")
 iconeEditar.src = "Imagens/editar.png";
@@ -101,9 +102,16 @@ const iconeCurtida = document.createElement("img")
 iconeCurtida.src = "Imagens/iconeCurtida.png"
 
 //inserindo os elementos criados no conteúdo da div de post criada no HTML
+const usuario = document.createElement("p")
+usuario.innerHTML = autor;
 const postagens = document.createElement("div");
-postagens.textContent = `${autor}: ${conteudo} ${data} ${curtidas}`;
+postagens.innerHTML = conteudo + curtidas;
+const dataPostagem = document.createElement("div");
+dataPostagem.innerHTML = data;
+
+conteudoLinhaDoTempo.appendChild(usuario);
 conteudoLinhaDoTempo.appendChild(postagens);
+conteudoLinhaDoTempo.appendChild(dataPostagem);
 conteudoLinhaDoTempo.appendChild(iconeEditar);
 conteudoLinhaDoTempo.appendChild(iconeSalvar);
 conteudoLinhaDoTempo.appendChild(iconeLixeira);
@@ -116,27 +124,33 @@ iconeSalvar.className = "salvar"
 iconeLixeira.className = "excluir"
 iconeCurtir.className = "curtir"
 iconeCurtida.className = "curtida"
+usuario.className = "nomeUsuarioPost"
+dataPostagem.className= "dataPostagem"
 
 iconeLixeira.addEventListener("click", (event) => {
   //constante que pega o valor do id do documento que está
   // armszenado no icone da lixeira, no evento de clique.
     const idPost = event.target.dataset.postid;
+    if(window.confirm("Realmente deseja deletar esta publicação?"))
     excluirPublicacao(idPost);
     atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
   })
 
   iconeEditar.addEventListener("click", (event) =>{
-    const idPost = event.target.dataset.posid;
     const editarPost = document.createElement('input');
     editarPost.value = postagens.innerText;
     postagens.parentNode.replaceChild(editarPost, postagens)
     editarPost.className = "caixaDeEdicao";
   })
+
+  iconeSalvar.addEventListener("click", (event)=>{
+    const editarPost = linhaDoTempo.querySelector(".caixaDeEdicao").value;
+    const idPost = event.target.dataset.postid;
+    const publicacaoEditada = editarPost;
+    editarPublicacao(idPost, publicacaoEditada) 
+    alert("Publicação editada com sucesso!")
+  })
 };
-
-
-
-
   return linhaDoTempo;
   
 };
