@@ -1,6 +1,5 @@
 import { criarPublicacao,atualizarLinhaDoTempo, excluirPublicacao, editarPublicacao} from '../../Firebase/Firestore.js';
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
-import { updateCurrentUser } from 'firebase/auth';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
