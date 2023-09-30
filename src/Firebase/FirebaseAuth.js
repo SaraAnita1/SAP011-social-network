@@ -1,7 +1,8 @@
 import {
-  signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signOut,
+  signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signOut, onAuthStateChanged,
 } from 'firebase/auth';
 import { auth } from './FirebaseConfig.js';
+import { criarPublicacao } from './Firestore.js';
 
 export function login(email, senha) {
   return signInWithEmailAndPassword(auth, email, senha);
@@ -21,5 +22,9 @@ export function sair() {
 }
 
 export function verificarStatusUsuario() {
-  return auth.currentUser;
+return auth.currentUser
+} 
+
+export function verificarUsuario(){
+ return auth.currentUser.displayName
 }

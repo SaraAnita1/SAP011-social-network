@@ -2,7 +2,6 @@ import {
   addDoc, collection,query, getDocs, orderBy, deleteDoc, doc, updateDoc,
 } from 'firebase/firestore';
 import { db, auth } from './FirebaseConfig.js';
-import { async } from 'regenerator-runtime';
 
 //Função para ciração de coleção no firebase
 export async function criarPublicacao(conteudoPublicacao) {
@@ -18,7 +17,7 @@ export async function criarPublicacao(conteudoPublicacao) {
 }
 
 //Função que insere que busca o post no firebase e insere na tela
-export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela){
+export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela,){
 const ordenar = query(collection(db, "publicacoes"), orderBy("data", "desc"))
 limparTela()
 let querySnapshot = await getDocs(ordenar);
@@ -31,8 +30,7 @@ querySnapshot.forEach((doc) => {
  //const que guarda o valor do id de cada documento
  const idPublicacao = doc.id;
 
- criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, idPublicacao);
-
+ criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, idPublicacao,);
 });
 }
 

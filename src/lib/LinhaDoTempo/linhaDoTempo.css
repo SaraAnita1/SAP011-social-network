@@ -20,6 +20,7 @@ body {
     height: 44px;
     margin-top: 100px;
     margin-left: 30px;
+    margin-bottom: 70px;
 
 }
 
@@ -28,7 +29,8 @@ body {
     background:#D9BACA;
     font-size: 25px;
     margin-left: 175px;
-    margin-top: 80px;
+    margin-top: 120px;
+    margin-left: 200px;
 }
 
 #criarPostContainer {
@@ -38,7 +40,7 @@ body {
   }
 
   #caixaDeTextoPost {
-    width: 400px; 
+    width: 430px; 
     height: 250px;
     margin-bottom: 5px; 
     margin-left: 40px;
@@ -47,6 +49,13 @@ body {
   #criarPostContainer{
    display:none
   }
+
+  #iconeCriarPostagem{
+    width: 110px;
+    height: 70px;
+    margin-left: -20px;
+    margin-top: 120px;
+}
 
 
 #feed{
@@ -62,7 +71,7 @@ body {
 
 .botaoPublicar {
     font-size: 20px;
-    margin-left: 350px;
+    margin-left: 375px;
     margin-top: 5px;
     border-radius: 5px;
     border: #000000 solid 1px;
@@ -78,50 +87,51 @@ body {
     color: black;
     font-family: 'Inter', sans-serif;
     align-items: center;
-    margin: 5px 40px 20px 40px;
     border: 2px solid #000;
-    margin-right: 100px;
     padding:40px 30px 50px 10px;
+    margin-left: 20px;
+    margin-right: 100px;
 }
 
-.editar,
-.salvar,
-.excluir,
-.curtir, 
-.curtida{
+#conteudoLinhaDoTempo{
+    display: block;
+}
 
-    display:block;
-    width: 27px;
-    height: 27px;
-    margin-top: 5px;
-    margin-left: 440px;
+.excluir,
+.salvar,
+.editar{
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin-left: 433px;
+    margin-top: 8px;
 }
 
 .editar{
-    margin-top:-190px;
+    margin-top: -150px;
+    margin-left: 395px;
 }
 
-#iconeCriarPostagem{
-    width: 130px;
-    height: 80px;
-    margin-left: -80px;
-    margin-top: 70px;
+.curtida,
+.curtir{
+    width: 22px;
+    height: 22px;
+    margin-top: 8px;
+    margin-left: 433px;
 }
-/* #conteudoLinhaDotempo{
-    width: 100%;
-    display: inline-block;
-} */
+
+.curtir{
+    margin-top: 8px;
+}
+
 
 .caixaDeEdicao{
-    width: 88%;
-    display: flex;
+    width: 85%;
+    height: 35%;
     font-size: 18px;
     color: black;
     font-family: 'Inter', sans-serif;
-    align-items: center;
-    margin: 40px 40px 40px 40px;
     border: 2px solid #000;
-    margin-right: 100px;
     padding:40px 30px 50px 10px;
 }
 
@@ -132,14 +142,31 @@ body {
     font-style: normal;
     width: 100%;
     height: 44px;
-    margin-left: 30px;
+    margin-left: 20px;
     margin-bottom: -20px;
+    margin-top: 100px;
 }
 
 .dataPostagem{
     font-family: 'Inter', sans-serif;
+    font-size: 5px;
+    margin-bottom: -60px;
+}
+
+.dialog{
+    background:#D9BACA;
+    width: 350px;
+    height: 200px;
+}
+
+.botaoDialog{
     font-size: 15px;
-    margin-bottom: 100px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: #000000 solid 1px;
+    background: #E7DBE1;
+    width: 75px;
+    height: 25px;
 }
 
 

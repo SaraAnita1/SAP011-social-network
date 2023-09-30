@@ -1,5 +1,5 @@
 import { criarPublicacao,atualizarLinhaDoTempo, excluirPublicacao, editarPublicacao} from '../../Firebase/Firestore.js';
-import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
+import { sair, verificarStatusUsuario, verificarUsuario } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
@@ -7,7 +7,7 @@ export default () => {
   const conteudo = `
   <div id="headerContainer">
   <div id="usuarioPostagem">
-    <p class="nomeUsuario">Olá Millennial!</p>
+    <p class="nomeUsuario">Olá, Millennial!</p>
     <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
   </div>
   <button id="botaoSair">Sair</button>
@@ -17,7 +17,7 @@ export default () => {
     <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
     <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
   </div>
-    <div id="conteudoLinhaDoTempo"</div>
+    <div id="conteudoLinhaDoTempo"></div>
   </div>
 </section>
   `;
@@ -26,10 +26,13 @@ export default () => {
 
   // Função para manter usuário logado e deslogado
   if (verificarStatusUsuario()) {
+    console.log("Linha do tempo");
     window.location.hash = '#linhaDoTempo';
   } else {
     window.location.hash = '#telaInicial';
+    ("tela inicial")
   }
+
 
   // funcao sair
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');
@@ -81,7 +84,7 @@ const conteudoLinhaDoTempo = linhaDoTempo.querySelector("#conteudoLinhaDoTempo")
 conteudoLinhaDoTempo.innerHTML = "";
 }
 
-function criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, idPublicacao){
+function criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, idPublicacao,){
 //Criação dos elementos de post e icones de forma dinamica
 const iconeEditar = document.createElement("img")
 iconeEditar.src = "Imagens/editar.png";
@@ -107,24 +110,25 @@ const postagens = document.createElement("div");
 postagens.innerHTML = conteudo + curtidas;
 const dataPostagem = document.createElement("div");
 dataPostagem.innerHTML = data;
+const iconesUsuario = document.createElement("div");
 
 conteudoLinhaDoTempo.appendChild(usuario);
 conteudoLinhaDoTempo.appendChild(postagens);
 conteudoLinhaDoTempo.appendChild(dataPostagem);
-conteudoLinhaDoTempo.appendChild(iconeEditar);
-conteudoLinhaDoTempo.appendChild(iconeSalvar);
-conteudoLinhaDoTempo.appendChild(iconeLixeira);
+conteudoLinhaDoTempo.appendChild(iconesUsuario);
+iconesUsuario.appendChild(iconeEditar);
+iconesUsuario.appendChild(iconeLixeira);
 conteudoLinhaDoTempo.appendChild(iconeCurtir);
 conteudoLinhaDoTempo.appendChild(iconeCurtida);
 
 postagens.className = "postagens"
 iconeEditar.className = "editar"
-iconeSalvar.className = "salvar"
 iconeLixeira.className = "excluir"
 iconeCurtir.className = "curtir"
 iconeCurtida.className = "curtida"
 usuario.className = "nomeUsuarioPost"
-dataPostagem.className= "dataPostagem"
+dataPostagem.className = "dataPostagem"
+iconesUsuario.className = "iconesUsuario"
 
 iconeLixeira.addEventListener("click", (event) => {
   //constante que pega o valor do id do documento que está
@@ -135,22 +139,58 @@ iconeLixeira.addEventListener("click", (event) => {
     atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
   })
 
-  iconeEditar.addEventListener("click", (event) =>{
-    const editarPost = document.createElement('input');
-    editarPost.value = postagens.innerText;
-    postagens.parentNode.replaceChild(editarPost, postagens)
-    editarPost.className = "caixaDeEdicao";
-  })
+  // iconeEditar.addEventListener("click", (event) =>{
+  //   const editarPost = document.createElement('dialog');
+  //   editarPost.value = postagens.innerText;
+  //   postagens.parentNode.replaceChild(editarPost, postagens)
+  //   editarPost.className = "caixaDeEdicao";
+  // })
 
-  iconeSalvar.addEventListener("click", (event)=>{
-    const editarPost = linhaDoTempo.querySelector(".caixaDeEdicao").value;
+
+  // iconeSalvar.addEventListener("click", (event)=>{
+  //   const editarPost = linhaDoTempo.querySelector(".caixaDeEdicao").value;
+  //   const idPost = event.target.dataset.postid;
+  //   const publicacaoEditada = editarPost;
+  //   editarPublicacao(idPost, publicacaoEditada) 
+  //   atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+  //   alert("Publicação editada com sucesso!")
+  // })
+
+  iconeEditar.addEventListener("click", (event) => {
+  const dialog = document.createElement('dialog');
+  dialog.className = "dialog";
+  dialog.innerHTML = `
+    <textarea class="caixaDeEdicao">${postagens.innerText}</textarea>
+    <button class="salvarEdicao">Salvar</button>
+  `;
+  conteudoLinhaDoTempo.appendChild(dialog);
+  dialog.showModal();
+  
+  const salvarEdicaoBtn = dialog.querySelector('.salvarEdicao');
+  salvarEdicaoBtn.className = "botaoDialog"
+  
+  salvarEdicaoBtn.addEventListener('click', () => {
+    const editarPost = dialog.querySelector(".caixaDeEdicao").value;
     const idPost = event.target.dataset.postid;
     const publicacaoEditada = editarPost;
-    editarPublicacao(idPost, publicacaoEditada) 
-    alert("Publicação editada com sucesso!")
-  })
+    editarPublicacao(idPost, publicacaoEditada);
+    dialog.close();
+    atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+  });
+});
+
+
+const usuarioAtual = verificarUsuario()
+if(usuarioAtual === autor){
+  return iconesUsuario.style.display = "block"
+}else {return iconesUsuario.style.display = "none"
+
+}
+
+}
+
+return linhaDoTempo;
+ 
 };
-  return linhaDoTempo;
-  
-};
+
 
