@@ -12,8 +12,8 @@ body {
     line-height: normal;
     width: 352px;
     height: 48px;
-    padding-top: 70px;
-    margin-left: 115px;
+    padding-top: 50px;
+    margin-left: 70px;
     border-bottom: 2px solid #D2398A;
 }
 
@@ -24,7 +24,8 @@ body {
     background: rgba(147, 144, 144, 0.39);
     padding-top: 70px;
     margin: auto;
-    margin-bottom: 50px;
+    padding-top: 25px;
+    padding-bottom: 40px;
 }
 
 #nomeUsuario,
@@ -75,8 +76,8 @@ body {
 #entrarNaConta {
     display: flex;
     width: 80%;
-    margin-top: 45px;
-    margin-left: 75px;
+    margin-top: 35px;
+    margin-left: 85px;
 }
 
 .entrarConta {
@@ -123,7 +124,7 @@ body {
 
     #texto1-desktop-cadastro {
         font-family: 'Montserrat', sans-serif;
-        font-size: 25px;
+        font-size: 23px;
         font-weight: 700;
         line-height: 35px;
         letter-spacing: 0em;
@@ -134,7 +135,7 @@ body {
 
     #texto2-desktop-cadastro {
         font-family: 'Montserrat', sans-serif;
-        font-size: 25px;
+        font-size: 23px;
         font-weight: 700;
         line-height: 35px;
         letter-spacing: 0em;
@@ -156,6 +157,11 @@ body {
     #fundoCadastro {
         margin-right: 30px;
         height: 480px;
+        padding-bottom: 50px;
+    }
+
+    #entrarNaConta {
+        margin-top: 25px;
     }
 
     #nomeUsuario,
@@ -178,10 +184,10 @@ body {
 @media screen and (min-width: 1030px) {
 
     #criarContaTitulo {
-        margin-left: 55px;
-        margin-top: -15px;
-        padding-top: 70px;
-        font-size: 45px;
+        margin-top: -25px;
+        padding-top: 75px;
+        font-size: 35px;
+        margin-left: -80px;
     }
 
     #conteudo-desktop-cadastro {
@@ -196,37 +202,43 @@ body {
     }
 
     #texto1-desktop-cadastro {
-        font-size: 30px;
-        margin-top: 90px;
-        width: 80%;
-        margin-left: 60px;
+        font-size: 27px;
+        margin-top: 70px;
+        width: 75%;
+        margin-left: 25px;
     }
 
     #texto2-desktop-cadastro {
-        font-size: 28px;
+        font-size: 25px;
         margin-top: 50px;
-        width: 90%;
+        width: 80%;
     }
 
     #cadastro-imagem-texto img {
-        width: 600px;
-        height: 450px;
+        width: 550px;
+        height: 430px;
+        margin-top: -90px;
+    }
+
+    #cadastr-imagem-texto{
+        display: block;
         margin-left: 100px;
+        margin-top: -30px;
     }
 
     #fundoCadastro {
-        margin-right: 200px;
-        height: 480px;
-        width: 480px;
+        height: 470px;
+        width: 440px;
         padding-bottom: 30px;
+        margin-left: -120px;
+        margin-right: 80px;
     }
 
     #nomeUsuario,
     #email,
     #senha,
     #confirmarSenha {
-        margin-left: 65px;
-        width: 350px;
+        width: 320px;
     }
 
     .campoCadastro {
@@ -239,7 +251,15 @@ body {
     }
 
     #criarContaCadastro {
-        margin-left: 135px;
+        margin-top: -15px;
+        margin-left: 130px;
+    }
+
+    #entrarNaConta {
+        width: 75%;
+        margin-top: -10px;
+        margin-left: -530px;
+        font-size: 18px;
     }
 
 }

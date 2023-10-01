@@ -1,5 +1,7 @@
 body {
     background-color: #D9BACA;
+    margin: 0; 
+    font-family: 'Inter', sans-serif;
 }
 
 #headerContainer{
@@ -18,7 +20,7 @@ body {
     font-style: normal;
     width: 170px;
     height: 44px;
-    margin-top: 100px;
+    margin-top: 80px;
     margin-left: 30px;
     margin-bottom: 70px;
 
@@ -29,8 +31,8 @@ body {
     background:#D9BACA;
     font-size: 25px;
     margin-left: 175px;
-    margin-top: 120px;
-    margin-left: 200px;
+    margin-top: 100px;
+    margin-left: 110px;
 }
 
 #criarPostContainer {
@@ -40,10 +42,11 @@ body {
   }
 
   #caixaDeTextoPost {
-    width: 430px; 
+    width: 385px; 
     height: 250px;
     margin-bottom: 5px; 
-    margin-left: 40px;
+    margin-top: -40px;
+    margin-left: 20px;
   }
 
   #criarPostContainer{
@@ -51,92 +54,105 @@ body {
   }
 
   #iconeCriarPostagem{
-    width: 110px;
-    height: 70px;
-    margin-left: -20px;
-    margin-top: 120px;
+    width: 100px;
+    height: 65px;
+    margin-left: -30px;
+    margin-top: 105px;
 }
 
 
 #feed{
     padding-top: 30px;
     padding-bottom: 30px;
-    background: #FAFAFA;
+    background: #F5F5F5;
     width: 90%;
     height:100%;
     display: block;
     margin: auto;
-    /* height: 100vh; */
+    border-radius: 10px;
+    border: 2px solid grey;
 }
 
 .botaoPublicar {
-    font-size: 20px;
-    margin-left: 375px;
+    font-size: 15px;
+    margin-left: 325px;
     margin-top: 5px;
     border-radius: 5px;
     border: #000000 solid 1px;
     background: #E7DBE1;
     padding: 5px 10px 5px 10px;
-    width: 100px;
-    
+    width: 85px; 
 }
 
 .postagens{
+    background:white;
+    position: relative;
+    overflow-wrap: break-word;
     display: flex;
-    font-size: 18px;
-    color: black;
+    font-size: 15px;
     font-family: 'Inter', sans-serif;
-    align-items: center;
-    border: 2px solid #000;
-    padding:40px 30px 50px 10px;
+    padding:15px 30px 50px 10px;
+    border-right: solid 0.5px grey;
+    border-top: solid 0.5px grey;
+    border-left: solid 0.5px grey;;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 50px;
     margin-left: 20px;
-    margin-right: 100px;
+    margin-right: 50px;
+    min-height: 50px;
+      
 }
 
 #conteudoLinhaDoTempo{
     display: block;
 }
 
-.excluir,
-.salvar,
-.editar{
+.excluir{
     display: block;
-    width: 22px;
-    height: 22px;
-    margin-left: 433px;
-    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+    margin-left: 370px;
+    margin-top: 10px;
 }
 
 .editar{
-    margin-top: -150px;
-    margin-left: 395px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-left: 370px;
+    margin-top: 5px;
 }
 
 .curtida,
 .curtir{
-    width: 22px;
-    height: 22px;
-    margin-top: 8px;
-    margin-left: 433px;
-}
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-left: 390px;
+} 
 
 .curtir{
-    margin-top: 8px;
+    margin-top: -100px;
+}
+
+.curtida{
+    margin-top: 10px;
 }
 
 
 .caixaDeEdicao{
-    width: 85%;
-    height: 35%;
-    font-size: 18px;
-    color: black;
+    background: #F5F5F5;
+    width: 89%;
+    height: 66%;
+    font-size: 15px;
     font-family: 'Inter', sans-serif;
-    border: 2px solid #000;
-    padding:40px 30px 50px 10px;
+    padding:15px 15px 15px 15px;
+    border: solid 2px grey;
+    overflow-wrap: break-word;
 }
 
 .nomeUsuarioPost{
-    color: #D2398A;
+    color:#D2398A;
     font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
@@ -144,10 +160,11 @@ body {
     height: 44px;
     margin-left: 20px;
     margin-bottom: -20px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .dataPostagem{
+    display: none;
     font-family: 'Inter', sans-serif;
     font-size: 5px;
     margin-bottom: -60px;
@@ -155,18 +172,119 @@ body {
 
 .dialog{
     background:#D9BACA;
-    width: 350px;
+    width: 320px;
     height: 200px;
+    border: solid 3px grey;
 }
 
 .botaoDialog{
     font-size: 15px;
+    border-radius: 5px;
+    border: #000000 solid 1px;
+    background: #E7DBE1;
+    width: 70px;
+    height: 23px;
     margin-top: 5px;
+    margin-left: 240px;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(1px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+@media screen and (min-width: 768px){
+
+
+.nomeUsuario{
+    margin-left: 50px;
+}
+
+#botaoSair{
+    margin-left: 590px;
+}
+
+.excluir{
+    margin-left: 840px;
+}
+
+.editar{
+    margin-left: 840px;
+}
+
+.curtida,
+.curtir{
+    margin-left: 860px;
+} 
+
+.botaoPublicar {
+    margin-left: -90px;
+}
+
+#caixaDeTextoPost {
+    margin-bottom: 30px; 
+}
+}
+
+@media screen and (min-width: 1030px){
+
+.nomeUsuario{
+    font-size: 45px;
+    margin-left: 80px;
+}
+
+#iconeCriarPostagem{
+    margin-left: 15px;
+    margin-top: 120px;
+}
+
+
+#botaoSair{
+    margin-left: 850px;
+    margin-top: 125px;
+}
+
+.excluir{
+    margin-left: 1150px;
+}
+
+.editar{
+    margin-left: 1150px;
+}
+
+.curtida,
+.curtir{
+    margin-left: 1170px;
+
+} 
+
+#caixaDeTextoPost {
+    width: 550px; 
+    height: 250px;
+    margin-bottom: 30px; 
+}
+
+.caixaDeEdicao{
+    width: 93%;
+    height: 77%;
+}
+
+.dialog{
+    width: 520px;
+    height: 300px;
+}
+
+.botaoDialog{
+    font-size: 17px;
     border-radius: 5px;
     border: #000000 solid 1px;
     background: #E7DBE1;
     width: 75px;
-    height: 25px;
+    height: 26px;
+    margin-top: 5px;
+    margin-left: 440px;
 }
 
+}
 

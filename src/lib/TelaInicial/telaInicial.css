@@ -71,7 +71,7 @@ body {
     font-size: 25px;
     font-style: normal;
     font-weight: 700px;
-    margin-left: 110px;
+    margin-left: 100px;
     padding: 8px 35px 8px 35px;
     text-decoration: none;
 }
@@ -98,7 +98,7 @@ nav img {
 #novaConta {
     display: flex;
     width: 80%;
-    margin-top: 35px;
+    margin-top: 20px;
     margin-left: 75px;
 }
 
@@ -134,7 +134,8 @@ nav img {
     #tituloPagina {
         margin-left: -200px;
         margin-left: 7px;
-        margin-right: 10px;
+        margin-right: 35px;
+        margin-top: -20px;
     }
 
     #conteudoPaginaDesktop {
@@ -143,6 +144,7 @@ nav img {
 
     #container-imagem-texto {
         display: block;
+        margin-left: 20px;
     }
 
     #texto1-desktop {
@@ -152,7 +154,7 @@ nav img {
         line-height: 35px;
         letter-spacing: 0em;
         text-align: center;
-        margin-top: 90px;
+        margin-top: 80px;
         color: #66535DEB;
     }
 
@@ -178,22 +180,34 @@ nav img {
     }
 
     #fundoTelaInicial {
-        margin-right: 30px;
-        height: 450px;
+        margin-right: 35px;
+        height: 440px;
+        padding-top: 30px;
     }
 
     #novaConta {
         display: flex;
-        width: 80%;
-        margin-top: -35px;
+        width: 60%;
+        margin-top: -2px;
         margin-left: -435px;
     }
 
     nav img {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         margin-left: 180px;
-        margin-top: 2px;
+        margin-top: -10px;
+    }
+
+    #entrarGoogle {
+        color: rgba(102, 103, 100, 0.92);
+        text-align: center;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-top: 35px;
     }
 
 }
@@ -201,23 +215,23 @@ nav img {
 @media screen and (min-width: 1030px) {
 
     #tituloPagina {
-        margin-right: 210px;
-        margin-top: -15px;
+        margin-top: -25px;
         padding-top: 60px;
-        font-size: 45px;
+        font-size: 35px;
+        margin-left: -120px;
     }
 
     #texto1-desktop {
-        font-size: 30px;
-        margin-top: 90px;
-        width: 80%;
-        margin-left: 60px;
+        font-size: 27px;
+        margin-top: 100px;
+        width: 75%;
+        margin-left: 30px;
     }
 
     #texto2-desktop {
-        font-size: 28px;
+        font-size: 25px;
         margin-top: 50px;
-        width: 90%;
+        width: 75%;
     }
 
     nav img {
@@ -228,28 +242,30 @@ nav img {
     }
 
     #container-imagem-texto img {
-        width: 600px;
-        height: 450px;
-        margin-left: 125px;
+        width: 550px;
+        height: 430px;
+        margin-top: -90px;
+        margin-left: 75px;
     }
 
     #fundoTelaInicial {
-        margin-right: 200px;
-        height: 430px;
-        width: 480px;
+        height: 400px;
+        width: 445px;
         padding-bottom: 30px;
+        margin-left: -100px;
+        margin-right: 80px;
     }
 
     #container-imagem-texto {
         display: block;
         margin-left: 100px;
-        margin-top: -20px;
+        margin-top: -30px;
+        margin-right: -50px;
     }
 
     #emailTelaInicial,
     #senhaTelaInicial {
-        margin-left: 65px;
-        width: 350px;
+        width: 320px;
     }
 
     #emailDaTela,
@@ -258,19 +274,19 @@ nav img {
     }
 
     #botaoEntrar {
-        margin-left: 160px;
+        margin-top: -15px;
+        margin-left: 130px;
     }
 
     #entrarGoogle {
-        margin-top: 40px;
+        margin-top: 30px;
     }
 
-
-
     #novaConta {
-        width: 80%;
-        margin-top: 5px;
-        margin-left: -620px;
+        width: 75%;
+        margin-top: 15px;
+        margin-left: -550px;
+        font-size: 18px;
     }
 
 }

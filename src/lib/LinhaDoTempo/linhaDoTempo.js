@@ -115,11 +115,12 @@ const iconesUsuario = document.createElement("div");
 conteudoLinhaDoTempo.appendChild(usuario);
 conteudoLinhaDoTempo.appendChild(postagens);
 conteudoLinhaDoTempo.appendChild(dataPostagem);
-conteudoLinhaDoTempo.appendChild(iconesUsuario);
+usuario.appendChild(iconesUsuario);
 iconesUsuario.appendChild(iconeEditar);
 iconesUsuario.appendChild(iconeLixeira);
 conteudoLinhaDoTempo.appendChild(iconeCurtir);
 conteudoLinhaDoTempo.appendChild(iconeCurtida);
+
 
 postagens.className = "postagens"
 iconeEditar.className = "editar"
