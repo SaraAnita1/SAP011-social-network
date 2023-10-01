@@ -1,6 +1,11 @@
 import {
-  signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signOut,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
+
 import { auth } from './FirebaseConfig.js';
 
 export function login(email, senha) {

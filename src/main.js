@@ -19,16 +19,15 @@ export const iniciarPagina = () => {
       default:
         conteudo.appendChild(telaInicial());
     }
-
+  });
+  window.addEventListener('load', () => {
+    const conteudo = document.querySelector('#conteudo');
+    conteudo.appendChild(telaInicial());
+    iniciarPagina();
   });
 };
-window.addEventListener('load', () => {
-  const conteudo = document.querySelector('#conteudo');
-  conteudo.appendChild(telaInicial())
-  iniciarPagina();
-});
 
-// iniciarPagina();
+iniciarPagina();
 
 // const botaoEntrar = document.querySelector('#botaoEntrar');
 // document.addEventListener('DOMContentLoaded', function() {

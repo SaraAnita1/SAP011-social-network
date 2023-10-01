@@ -2,7 +2,7 @@ import { login, entrarComGoogle } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const container = document.createElement('div');
-  console.log("tela inicial");
+  console.log('tela inicial');
   const conteudo = `
         <div id="conteudoPaginaDesktop"> <div id="container-imagem-texto">
         <p id="texto1-desktop">Conectados pela <br> nostalgia</p>
