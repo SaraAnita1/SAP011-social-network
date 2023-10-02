@@ -1,5 +1,5 @@
 import {
-  addDoc, collection,query, getDocs, orderBy, deleteDoc, doc, updateDoc,
+  addDoc, collection,query, getDocs, orderBy, deleteDoc, doc, updateDoc, Timestamp
 } from 'firebase/firestore';
 import { db, auth } from './FirebaseConfig.js';
 
@@ -16,6 +16,7 @@ export async function criarPublicacao(conteudoPublicacao) {
 
 }
 
+
 //Função que insere que busca o post no firebase e insere na tela
 export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela,){
 const ordenar = query(collection(db, "publicacoes"), orderBy("data", "desc"))
@@ -30,7 +31,19 @@ querySnapshot.forEach((doc) => {
  //const que guarda o valor do id de cada documento
  const idPublicacao = doc.id;
 
- criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, idPublicacao,);
+ const dataAtual = new Date();
+ //conversão de nano segundos e segundos em milisegundos
+ // para tornar compativel com JS.
+ const dataEmMiliSegundos = data.seconds * 1000 + data.nanoseconds / 1000000; 
+ const dataDaPublicacao = new Date(dataEmMiliSegundos);
+ const diferencaEmMilissegundos = dataAtual - dataDaPublicacao;
+ const diferencaEmSegundos = diferencaEmMilissegundos / 1000;
+ const dia = dataDaPublicacao.getDate(); 
+ const mes = dataDaPublicacao.getMonth(); 
+ const ano = dataDaPublicacao.getFullYear(); 
+
+ criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, 
+  idPublicacao, diferencaEmSegundos, dia, mes, ano);
 });
 }
 
