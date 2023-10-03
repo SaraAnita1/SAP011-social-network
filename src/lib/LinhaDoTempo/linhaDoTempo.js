@@ -109,8 +109,6 @@ iconeCurtida.src = "Imagens/iconeCurtida.png"
 //inserindo os elementos criados no conteúdo da div de post criada no HTML
 const usuario = document.createElement("p")
 usuario.innerHTML = autor;
-// const fotoDoUsuario =document.createElement("img");
-// fotoDoUsuario.src = fotoUsuario;
 const postagens = document.createElement("div");
 postagens.innerHTML = conteudo + curtidas;
 const dataPostagem = document.createElement("div");
@@ -125,7 +123,6 @@ iconesUsuario.appendChild(iconeEditar);
 iconesUsuario.appendChild(iconeLixeira);
 conteudoLinhaDoTempo.appendChild(iconeCurtir);
 conteudoLinhaDoTempo.appendChild(iconeCurtida);
-// conteudoLinhaDoTempo.appendChild(fotoDoUsuario);
 
 
 postagens.className = "postagens"
@@ -136,7 +133,6 @@ iconeCurtida.className = "curtida"
 usuario.className = "nomeUsuarioPost"
 dataPostagem.className = "dataPostagem"
 iconesUsuario.className = "iconesUsuario"
-// fotoDoUsuario.className = "fotoUsuario"
 
 if (diferencaEmSegundos < 60) {
   const segundos = Math.floor(diferencaEmSegundos);
@@ -197,8 +193,6 @@ iconeLixeira.addEventListener("click", (event) => {
     atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
   });
 });
-
-
 
 
 const usuarioAtual = verificarUsuario()
