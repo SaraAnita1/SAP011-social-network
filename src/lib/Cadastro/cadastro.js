@@ -16,13 +16,13 @@ export default () => {
         <div>
         <h1 id="criarContaTitulo">Crie sua Conta</h1>
         <section id="fundoCadastro">
+        <div id="mensagemErro"></div>
       <form id="formulario">
         <label> <p class = "campoCadastro"> Nome </p> <input id="nomeUsuario" type="text" name="nome"></input></label>
         <label> <p class = "campoCadastro"> Email </p> <input id= "email" type="email" name="email"></input></label>
-        <div id="mensagemErro"></div>
         <label> <p class = "campoCadastro"> Senha </p> <input id= "senha" type="password" name="senha"></input></label>
-        <div id="mensagemErroSenha"></div>
         <label> <p class = "campoCadastro"> Confirmar senha </p> <input id="confirmarSenha" type="password" name="confirmarSenha"></input></label>
+        <div id="mensagemErroSenha"></div>
         <button type="button" id="criarContaCadastro">Criar conta</button>
         <div id="entrarNaConta"
         <p class="entrarConta"> Já tem conta? </p>

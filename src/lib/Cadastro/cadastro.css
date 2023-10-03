@@ -107,6 +107,20 @@ body {
     display: none;
 }
 
+#mensagemErro{
+    font-size: 15px;
+    margin-left: 130px;
+    color: rgba(46, 17, 32, 0.99);
+}
+
+#mensagemErroSenha{
+    margin-top: -50px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    margin-left: 60px;
+    color: rgba(46, 17, 32, 0.99);
+}
+
 @media screen and (min-width: 768px) {
 
     #criarContaTitulo {
@@ -177,6 +191,16 @@ body {
 
     #confirmarSenha {
         margin-bottom: 42px;
+    }
+
+    #mensagemErro{
+        margin-left: 135px;
+    }
+
+    #mensagemErroSenha{
+        margin-top: -40px;
+        font-size: 15px;
+        margin-left: 65px;
     }
 
 }
@@ -260,6 +284,16 @@ body {
         margin-top: -10px;
         margin-left: -530px;
         font-size: 18px;
+    }
+
+    #mensagemErro{
+        margin-left: 150px;
+    }
+
+    #mensagemErroSenha{
+        margin-top: -35px;
+        font-size: 15px;
+        margin-left: 80px;
     }
 
 }

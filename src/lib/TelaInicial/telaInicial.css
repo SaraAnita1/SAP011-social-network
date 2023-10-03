@@ -129,6 +129,21 @@ nav img {
     display: none;
 }
 
+#usuarioNaoEncontrado{
+    font-size: 15px;
+    margin-left: 115px;
+    color: rgba(46, 17, 32, 0.99);
+    margin-top: -20px;
+}
+
+#dadosIncorretos{
+    font-size: 15px;
+    margin-left: 85px;
+    margin-bottom: 25px;
+    margin-top: -35px;
+    color: rgba(46, 17, 32, 0.99);
+}
+
 @media screen and (min-width: 768px) {
 
     #tituloPagina {
@@ -210,6 +225,16 @@ nav img {
         margin-top: 35px;
     }
 
+    #usuarioNaoEncontrado{
+        margin-left: 120px;
+        margin-top: 12px;
+    }
+
+    #dadosIncorretos{
+        margin-left: 85px;
+        margin-bottom: 20px;
+    }
+
 }
 
 @media screen and (min-width: 1030px) {
@@ -237,7 +262,7 @@ nav img {
     nav img {
         width: 40px;
         height: 40px;
-        margin-left: 215px;
+        margin-left: 210px;
         margin-top: -5px;
     }
 
@@ -275,7 +300,7 @@ nav img {
 
     #botaoEntrar {
         margin-top: -15px;
-        margin-left: 130px;
+        margin-left: 125px;
     }
 
     #entrarGoogle {
@@ -287,6 +312,18 @@ nav img {
         margin-top: 15px;
         margin-left: -550px;
         font-size: 18px;
+    }
+
+    #usuarioNaoEncontrado{
+        margin-left: 125px;
+        margin-top: -5px;
+        font-size: 17px;
+    }
+
+    #dadosIncorretos{
+        margin-left: 90px;
+        margin-bottom: 35px;
+        font-size: 17px;
     }
 
 }
