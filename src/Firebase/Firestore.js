@@ -46,3 +46,5 @@ export async function excluirPublicacao(idPublicacao) {
   console.log('deletando post');
   await deleteDoc(doc(db, 'publicacoes', idPublicacao));
 }
+
+// +

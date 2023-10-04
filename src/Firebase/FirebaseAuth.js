@@ -26,5 +26,5 @@ export function sair() {
 }
 
 export function verificarStatusUsuario() {
-  return auth.currentUser;
+  return auth.currentUser.uid;
 }

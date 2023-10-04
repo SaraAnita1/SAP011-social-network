@@ -3,7 +3,7 @@ import linhaDoTempo from './lib/LinhaDoTempo/linhaDoTempo.js';
 import telaInicial from './lib/TelaInicial/telaInicial.js';
 
 export const iniciarPagina = () => {
-  window.addEventListener('hashchange', () => {
+  const atualizarConteudo = () => {
     const conteudo = document.querySelector('#conteudo');
     conteudo.innerHTML = '';
     switch (window.location.hash) {
@@ -19,12 +19,10 @@ export const iniciarPagina = () => {
       default:
         conteudo.appendChild(telaInicial());
     }
-  });
-  window.addEventListener('load', () => {
-    const conteudo = document.querySelector('#conteudo');
-    conteudo.appendChild(telaInicial());
-    iniciarPagina();
-  });
+  };
+
+  window.addEventListener('hashchange', atualizarConteudo);
+  window.addEventListener('load', atualizarConteudo);
 };
 
 iniciarPagina();

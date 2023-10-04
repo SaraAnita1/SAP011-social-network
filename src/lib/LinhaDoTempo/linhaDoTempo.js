@@ -85,7 +85,6 @@ export default () => {
     conteudoLinhaDoTempo.appendChild(iconeSalvar);
     conteudoLinhaDoTempo.appendChild(iconeLixeira);
     conteudoLinhaDoTempo.appendChild(iconeCurtir);
-    conteudoLinhaDoTempo.appendChild(iconeCurtida);
 
     postagens.className = 'postagens';
     iconeEditar.className = 'editar';
@@ -104,19 +103,18 @@ export default () => {
       atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
     });
 
-    // Acesse o botão e a imagem pelo ID
-    // const curtirPublicacao = linhaDoTempo.querySelector('#curtir');
+    iconeCurtir.addEventListener('click', () => {
+      const imagem1 = document.createElement('img');
 
-    // // const publicaçaoCurtida = linhaDoTempo.querySelector('#curtida');
-    // curtirPublicacao.addEventListener('click', () => {
-    //   if (iconeCurtir.className.src.endsWith('curtir')) {
-    //     imagem.src = 'Imagens/iconeCurtir.png';
-    //   } else {
-    //     imagem.src = 'Imagens/iconeCurtida.png';
-    //   }
-    // });
+      // validação
 
-    return linhaDoTempo;
+      iconeCurtir.src = '../../Imagens/IconeCurtida.png';
+      imagem1.alt = 'Imagem 1';
+
+      // setTimeout(() => {
+      //   container.replaceChild(imagem1, imagem2);
+      // }, 2000);
+    });
   }
   // função criar publicacao e adicionar a linha do tempo
   const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
@@ -136,4 +134,6 @@ export default () => {
   iconeCaixaDePostagem.addEventListener('click', abrirCaixaDeTextoPostagem);
   // chama a função novamente para redenrizar os componentes na tela
   atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+
+  return linhaDoTempo;
 };
