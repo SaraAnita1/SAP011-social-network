@@ -6,7 +6,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  } from "firebase/auth";
+} from "firebase/auth";
 
 import { login } from '../src/Firebase/FirebaseAuth.js';
 
@@ -43,31 +43,26 @@ import { login } from '../src/Firebase/FirebaseAuth.js';
 
 
 // firebaseAuth
+const mockAuth = {
+  currentUser: null,
+};
 
-jest.mock('firebase/auth');
+jest.mock('firebase/auth', () => ({
+  getAuth: () => ({ currentUser: null}),
+  signInWithEmailAndPassword: jest.fn()
+}));
+
 
 describe('Testando funções assíncronas', () => {
   it('Deve logar com email e senha', async () => {
-    // Configuração do Firebase mock
-    const mockAuth = {
-      currentUser: null,
-    };
-    getAuth.mockReturnValueOnce(mockAuth);
-    // Simular a função signInWithEmailAndPassword
-    const mockSignInWithEmailAndPassword = jest.fn();
-    mockSignInWithEmailAndPassword.mockResolvedValueOnce({ user: { email: 'test@example.com' } });
-
-    // Substitua a implementação real de signInWithEmailAndPassword pela função mock criada
-    signInWithEmailAndPassword.mockImplementation(mockSignInWithEmailAndPassword);
-
 
     const email = 'test@example.com';
     const senha = 'password';
     await login(email, senha);
 
-    expect(mockSignInWithEmailAndPassword).toHaveBeenCalledWith(mockAuth, email, senha);
+    expect(signInWithEmailAndPassword).toHaveBeenCalledWith(mockAuth, email, senha);
 
     // Verifique se a função foi chamada apenas uma vez
-    expect(mockSignInWithEmailAndPassword).toHaveBeenCalledTimes(1);
+    expect(signInWithEmailAndPassword).toHaveBeenCalledTimes(1);
   });
 });
