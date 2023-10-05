@@ -54,16 +54,14 @@ export async function excluirPublicacao(idPublicacao) {
   await deleteDoc(doc(db, 'publicacoes', idPublicacao));
 }
 
-function curtir(idPublicacao, uid) {
-  updateDoc(doc(db, 'publicacoes', postId), {
+export async function curtir(idPublicacao, uid) {
+  await updateDoc(doc(db, 'publicacoes', postId), {
     curtidas: arrayUnion(idPublicacao, uid),
   });
 }
 
-function descurtir(idPublicacao, uid) {
-  updateDoc(doc(db, 'publicacoes', postId), {
+export async function descurtir(idPublicacao, uid) {
+  await updateDoc(doc(db, 'publicacoes', postId), {
     curtidas: arrayRemove(idPublicacao, uid),
   });
 }
-
-export { curtir, descurtir };
