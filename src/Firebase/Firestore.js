@@ -6,9 +6,15 @@ import {
   orderBy,
   deleteDoc,
   doc,
+  updateDoc,
+  postId,
+  arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 
 import { db, auth } from './FirebaseConfig.js';
+
+// const auth = () => getAuth(app);
 
 // Função para ciração de coleção no firebase
 export async function criarPublicacao(conteudoPublicacao) {
@@ -29,13 +35,14 @@ export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela) {
   const querySnapshot = await getDocs(ordenar);
   querySnapshot.forEach((snapshot) => {
     const autor = snapshot.data().autor;
+    const id = auth().currentUser.uid;
     const conteudo = snapshot.data().publicacao;
     const data = snapshot.data().data;
     const curtidas = snapshot.data().qntCurtidas;
     // const que guarda o valor do id de cada documento
-    const idPublicacao = snapshot.id;
+    const idPublicacao = postId.id;
 
-    criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao);
+    criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao, id);
   });
 }
 
@@ -47,4 +54,16 @@ export async function excluirPublicacao(idPublicacao) {
   await deleteDoc(doc(db, 'publicacoes', idPublicacao));
 }
 
-// +
+function curtir(idPublicacao, uid) {
+  updateDoc(doc(db, 'publicacoes', postId), {
+    curtidas: arrayUnion(idPublicacao, uid),
+  });
+}
+
+function descurtir(idPublicacao, uid) {
+  updateDoc(doc(db, 'publicacoes', postId), {
+    curtidas: arrayRemove(idPublicacao, uid),
+  });
+}
+
+export { curtir, descurtir };

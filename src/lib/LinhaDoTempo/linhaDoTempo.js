@@ -1,26 +1,32 @@
-import { criarPublicacao, atualizarLinhaDoTempo, excluirPublicacao } from '../../Firebase/Firestore.js';
+import {
+  criarPublicacao,
+  atualizarLinhaDoTempo,
+  excluirPublicacao,
+  curtir,
+} from '../../Firebase/Firestore.js';
+
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
 
   const conteudo = `
-  <div id="headerContainer">
-  <div id="usuarioPostagem">
-    <p class="nomeUsuario">Usuário</p>
-    <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
+    <div id="headerContainer">
+    <div id="usuarioPostagem">
+      <p class="nomeUsuario">Usuário</p>
+      <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
+    </div>
+    <button id="botaoSair">Sair</button>
   </div>
-  <button id="botaoSair">Sair</button>
-</div>
-<section id="feed">
-  <div id="criarPostContainer">
-    <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
-    <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
-  </div>
-  <div id="conteudoLinhaDoTempo"</div>
-  </div>
-  </section>
-  `;
+  <section id="feed">
+    <div id="criarPostContainer">
+      <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
+      <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
+    </div>
+    <div id="conteudoLinhaDoTempo"</div>
+    </div>
+    </section>
+    `;
 
   linhaDoTempo.innerHTML = conteudo;
   const conteudoLinhaDoTempo = linhaDoTempo.querySelector('#conteudoLinhaDoTempo');
@@ -85,38 +91,61 @@ export default () => {
     conteudoLinhaDoTempo.appendChild(iconeSalvar);
     conteudoLinhaDoTempo.appendChild(iconeLixeira);
     conteudoLinhaDoTempo.appendChild(iconeCurtir);
+    conteudoLinhaDoTempo.appendChild(contadorDeLikes);
 
     postagens.className = 'postagens';
     iconeEditar.className = 'editar';
     iconeSalvar.className = 'salvar';
     iconeLixeira.className = 'excluir';
     iconeCurtir.className = 'curtir';
-    iconeCurtida.className = 'curtida';
-
-    // const excluir = linhaDoTempo.querySelector('.excluir');
-
-    iconeLixeira.addEventListener('click', (event) => {
-      // constante que pega o valor do id do documento que está
-      // armszenado no icone da lixeira, no evento de clique.
-      const idPost = event.target.dataset.postid;
-      excluirPublicacao(idPost);
-      atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
-    });
-
-    iconeCurtir.addEventListener('click', () => {
-      const imagem1 = document.createElement('img');
-
-      // validação
-
-      iconeCurtir.src = '../../Imagens/IconeCurtida.png';
-      imagem1.alt = 'Imagem 1';
-
-      // setTimeout(() => {
-      //   container.replaceChild(imagem1, imagem2);
-      // }, 2000);
-    });
+    iconeCurtida.className = 'contadorDeLikes';
   }
-  // função criar publicacao e adicionar a linha do tempo
+
+  // const excluir = linhaDoTempo.querySelector('.excluir');
+
+  iconeLixeira.addEventListener('click', (event) => {
+    // constante que pega o valor do id do documento que está
+    // armszenado no icone da lixeira, no evento de clique.
+    const idPost = event.target.dataset.postid;
+    excluirPublicacao(idPost);
+    atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+  });
+
+  curtir(idPublicacao, uid) {
+
+    const contadorDeLikes = document.querySelector('.contadorDeLikes');
+    const postId = postId
+    const uid = uid
+    let liked = false;
+
+    // Função para atualizar o contador de likes
+    function atualizarContadorDeLikes(likes) {
+      contadorDeLikes.textContent = `${likes.length}`;
+    }
+
+    // Função para verificar se o usuário atual curtiu a publicação
+    function verificarQuemCurtiu(likes, uid) {
+      return likes.includes(uid);
+    }
+
+    // Inicializar o contador de likes e o estado do botão de curtir
+    // Atualizar o contador de likes e o texto do botão de acordo com o novo estado
+    atualizarContadorDeLikes(post.likes);
+    liked = verificarQuemCurtiu(post.likes, uid);
+    iconeCurtir.src = liked ? iconeCurtida.src = '../../Imagens/IconeCurtida.png' : iconeCurtir.src = '../../Imagens/IconeCurtir.png';
+
+    if (liked) {
+      // Se o usuário já curtiu, descurtir a publicação
+      descurtir(postId, uid);
+    } else {
+      // Se o usuário não curtiu, curtir a publicação
+      curtir(postId, uid);
+    }
+    // Inverter o estado liked
+    liked = !liked;
+
+  };
+
   const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
   botaoPublicar.addEventListener('click', (evento) => {
     const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
@@ -136,4 +165,4 @@ export default () => {
   atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
 
   return linhaDoTempo;
-};
+}
