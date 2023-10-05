@@ -7,7 +7,6 @@ import {
   deleteDoc,
   doc,
   updateDoc,
-  postId,
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
@@ -22,7 +21,7 @@ export async function criarPublicacao(conteudoPublicacao) {
 
     publicacao: conteudoPublicacao,
     data: new Date(),
-    qntCurtidas: 0,
+    qntCurtidas: [],
     autor: auth.currentUser.displayName,
 
   });
@@ -35,12 +34,12 @@ export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela) {
   const querySnapshot = await getDocs(ordenar);
   querySnapshot.forEach((snapshot) => {
     const autor = snapshot.data().autor;
-    const id = auth().currentUser.uid;
+    const id = auth.currentUser.uid;
     const conteudo = snapshot.data().publicacao;
     const data = snapshot.data().data;
     const curtidas = snapshot.data().qntCurtidas;
     // const que guarda o valor do id de cada documento
-    const idPublicacao = postId.id;
+    const idPublicacao = snapshot.id;
 
     criarEstrturaDoPost(autor, conteudo, data, curtidas, idPublicacao, id);
   });
@@ -54,14 +53,14 @@ export async function excluirPublicacao(idPublicacao) {
   await deleteDoc(doc(db, 'publicacoes', idPublicacao));
 }
 
-export async function curtir(idPublicacao, uid) {
-  await updateDoc(doc(db, 'publicacoes', postId), {
-    curtidas: arrayUnion(idPublicacao, uid),
+export const contadorCurtidas = async function curtir(idPublicacao, id) {
+  await updateDoc(doc(db, 'qntCurtidas', idPublicacao), {
+    qntCurtidas: arrayUnion(id),
   });
-}
+};
 
-export async function descurtir(idPublicacao, uid) {
-  await updateDoc(doc(db, 'publicacoes', postId), {
-    curtidas: arrayRemove(idPublicacao, uid),
+export const removerCurtidas = async function descurtir(idPublicacao, id) {
+  await updateDoc(doc(db, 'qntCurtidas', idPublicacao), {
+    qntCurtidas: arrayRemove(id),
   });
-}
+};
