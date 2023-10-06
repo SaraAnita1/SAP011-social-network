@@ -1,5 +1,3 @@
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-
 import { cadastrarUsuario } from '../../Firebase/FirebaseAuth';
 
 export default () => {
