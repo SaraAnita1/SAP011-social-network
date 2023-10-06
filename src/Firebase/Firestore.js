@@ -16,7 +16,6 @@ export async function criarPublicacao(conteudoPublicacao) {
 
 }
 
-
 //Função que insere que busca o post no firebase e insere na tela
 export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela,){
 const ordenar = query(collection(db, "publicacoes"), orderBy("data", "desc"))
