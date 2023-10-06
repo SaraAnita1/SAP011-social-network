@@ -28,3 +28,7 @@ export function sair() {
 export function verificarStatusUsuario() {
   return auth.currentUser;
 }
+
+export function verificarUsuario() {
+  return auth.currentUser.displayName;
+}
