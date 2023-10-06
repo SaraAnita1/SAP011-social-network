@@ -3,6 +3,7 @@ import {
   atualizarLinhaDoTempo,
   excluirPublicacao,
   contadorCurtidas,
+  removerCurtidas,
 } from '../../Firebase/Firestore.js';
 
 import { sair, verificarStatusUsuario } from '../../Firebase/FirebaseAuth.js';
@@ -81,10 +82,15 @@ export default () => {
     const iconeCurtir = document.createElement('img');
     iconeCurtir.src = 'Imagens/iconeCurtir.png';
     iconeCurtir.setAttribute('data-postId', idPublicacao);
-    const iconeCurtida = document.createElement('img');
-    iconeCurtida.src = 'Imagens/iconeCurtida.png';
-    iconeCurtida.setAttribute('data-postId', idPublicacao);
+
+    if (curtidas.includes(id)) {
+      iconeCurtir.src = 'Imagens/iconeCurtida.png';
+    } else {
+      iconeCurtir.src = 'Imagens/iconeCurtir.png';
+    }
+
     const contadorCurtidasTela = document.createElement('div');
+    contadorCurtidasTela.textContent = curtidas.length;
     // inserindo os elementos criados no conteúdo da div de post criada no HTML
     const postagens = document.createElement('div');
     postagens.textContent = `${autor}: ${conteudoPost} ${data} `;
@@ -101,7 +107,6 @@ export default () => {
     iconeSalvar.className = 'salvar';
     iconeLixeira.className = 'excluir';
     iconeCurtir.className = 'curtir';
-    iconeCurtida.className = 'curtida';
     contadorCurtidasTela.className = 'contadorCurtidasTela';
 
     iconeLixeira.addEventListener('click', (event) => {
@@ -119,18 +124,19 @@ export default () => {
         curtiu = true;
 
         if (curtidas.includes(id)) {
-          await contadorCurtidas(idPublicacao, id);
+          await removerCurtidas(idPublicacao, id);
 
           const index = curtidas.indexOf(id);
           if (index !== -1) {
-            contadorCurtidas.splice(index, 1);
+            curtidas.splice(index, 1);
           }
+          iconeCurtir.src = '../../Imagens/IconeCurtir.png';
 
           contadorCurtidasTela.innerHTML = curtidas.length;
           curtiu = false;
         } else {
           await contadorCurtidas(idPublicacao, id);
-
+          iconeCurtir.src = '../../Imagens/IconeCurtida.png';
           curtidas.push(id);
           contadorCurtidasTela.innerHTML = curtidas.length;
           curtiu = false;
@@ -161,9 +167,6 @@ export default () => {
     // Inicializar o contador de likes e o estado do botão de curtir
     // Atualizar o contador de likes e o texto do botão de acordo com o novo estado
     // atualizarContadorDeLikes(curtidas);
-
-    // iconeCurtir.src = liked ? iconeCurtida.src = '../../Imagens/IconeCurtida.png' :
-    // iconeCurtir.src = '../../Imagens/IconeCurtir.png';
 
     //
     // Inverter o estado liked

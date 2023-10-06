@@ -54,13 +54,14 @@ export async function excluirPublicacao(idPublicacao) {
 }
 
 export const contadorCurtidas = async function curtir(idPublicacao, id) {
-  await updateDoc(doc(db, 'qntCurtidas', idPublicacao), {
+  console.log(idPublicacao, id);
+  await updateDoc(doc(db, 'publicacoes', idPublicacao), {
     qntCurtidas: arrayUnion(id),
   });
 };
 
 export const removerCurtidas = async function descurtir(idPublicacao, id) {
-  await updateDoc(doc(db, 'qntCurtidas', idPublicacao), {
+  await updateDoc(doc(db, 'publicacoes', idPublicacao), {
     qntCurtidas: arrayRemove(id),
   });
 };
