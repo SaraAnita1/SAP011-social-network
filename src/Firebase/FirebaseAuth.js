@@ -1,5 +1,5 @@
 import {
-  signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signOut, onAuthStateChanged,
+  signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signOut, updateProfile,
 } from 'firebase/auth';
 import { auth } from './FirebaseConfig.js';
 
@@ -13,9 +13,21 @@ export function entrarComGoogle() {
   return signInWithPopup(auth, provider);
 }
 
-export function cadastrarUsuario(email, senha) {
-  return createUserWithEmailAndPassword(auth, email, senha);
+export function cadastrarUsuario(email, senha, nomeUsuario) {
+  return createUserWithEmailAndPassword(auth, email, senha, nomeUsuario)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return updateProfile(user, {
+        displayName: nomeUsuario
+      }).then(() => {
+        return nomeUsuario;
+      });
+    })
+    .catch((error) => {  
+      throw error;
+    });
 }
+
 
 export function sair() {
   return signOut(auth);
@@ -28,3 +40,4 @@ return auth.currentUser
 export function verificarUsuario(){
  return auth.currentUser.displayName
 }
+

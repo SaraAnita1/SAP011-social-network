@@ -24,6 +24,8 @@ export default () => {
 
   linhaDoTempo.innerHTML = conteudo;
 
+
+
   // Função para manter usuário logado e deslogado
   if (verificarStatusUsuario()) {
     console.log("Linha do tempo");
@@ -151,7 +153,7 @@ if (diferencaEmSegundos < 60) {
 }
 } else if (diferencaEmSegundos < 86400) {
   const horas = Math.floor(diferencaEmSegundos / 3600);
-  if(horas>1){dataPostagem.innerHTML = `Há ${horas} hora`
+  if(horas>1){dataPostagem.innerHTML = `Há ${horas} horas`
 }else{dataPostagem.innerHTML = `Há ${horas} hora`
 }
 } else if(diferencaEmSegundos > 86400){

@@ -2,19 +2,20 @@ import {
   addDoc, collection,query, getDocs, orderBy, deleteDoc, doc, updateDoc, Timestamp
 } from 'firebase/firestore';
 import { db, auth } from './FirebaseConfig.js';
+import { async } from 'regenerator-runtime';
 
 //Função para ciração de coleção no firebase
-export async function criarPublicacao(conteudoPublicacao) {
+export async function criarPublicacao(conteudoPublicacao, nomeUsuario) {
   await addDoc(collection(db, 'publicacoes'), {
-
     publicacao: conteudoPublicacao,
     data: new Date(),
     qntCurtidas: 0,
     autor: auth.currentUser.displayName,
     Foto: auth.currentUser.photoURL,
   });
-
 }
+
+
 
 //Função que insere que busca o post no firebase e insere na tela
 export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela,){
@@ -39,7 +40,7 @@ querySnapshot.forEach((doc) => {
  const diferencaEmSegundos = diferencaEmMilissegundos / 1000;
  const dia = dataDaPublicacao.getDate(); 
  const mes = dataDaPublicacao.getMonth(); 
- const ano = dataDaPublicacao.getFullYear(); 
+ const ano = dataDaPublicacao.getFullYear();
 
  criarEstrturaDoPost(autor, conteudo, data, curtidas, fotoUsuario, 
   idPublicacao, diferencaEmSegundos, dia, mes, ano);

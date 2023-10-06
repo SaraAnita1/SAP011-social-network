@@ -52,10 +52,11 @@ export default () => {
   }
   botaoCadastro.addEventListener('click', (event) => {
     event.preventDefault();
+    const nomeUsuario = cadastro.querySelector("#nomeUsuario").value;
     const email = cadastro.querySelector('#email').value;
     const senha = cadastro.querySelector('#senha').value;
     
-    cadastrarUsuario(email, senha).then((response) => {
+    cadastrarUsuario(email, senha, nomeUsuario).then((response) => {
       window.location.hash = '#telaInicial';
       console.log('success', response);
     }).catch((error) => {
@@ -63,5 +64,9 @@ export default () => {
     });
   });
 
+  
+
   return cadastro;
 };
+
+
