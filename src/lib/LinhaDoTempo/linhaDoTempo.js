@@ -12,31 +12,28 @@ import { sair, verificarStatusUsuario, verificarUsuario, } from '../../Firebase/
 export default () => {
   const linhaDoTempo = document.createElement('div');
 
-
-  const cabecalho = `
-    <div id="headerContainer">
-      <div id="usuarioPostagem">
-        <p class="nomeUsuario">Olá, Millennial!</p>
-        <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
-      </div>
-      <button id="botaoSair">Sair</button>
-    </div>
-  `;
-
   const conteudo = `
-    <section id="feed">
-      <div id="criarPostContainer">
-        <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
-        <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
-      </div>
-      <div id="conteudoLinhaDoTempo"></div>
-    </section>
+  <div id="headerContainer">
+  <div id="usuarioPostagem">
+    <p class="nomeUsuario">Olá, Millennial!</p>
+    <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
+  </div>
+  <button id="botaoSair">Sair</button>
+</div>
+<section id="feed">
+  <div id="criarPostContainer">
+    <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
+    <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
+  </div>
+    <div id="conteudoLinhaDoTempo"></div>
+  </div>
+</section>
   `;
 
-  linhaDoTempo.innerHTML = cabecalho + conteudo;
+  linhaDoTempo.innerHTML = conteudo;
 
 
-  atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
+
   // Função para manter usuário logado e deslogado
   if (verificarStatusUsuario()) {
     window.location.hash = '#linhaDoTempo';
@@ -75,15 +72,14 @@ export default () => {
   });
 
   const iconeCaixaDePostagem = linhaDoTempo.querySelector('#iconeCriarPostagem');
+  iconeCaixaDePostagem.addEventListener('click', abrirCaixaDeTextoPostagem);
   function abrirCaixaDeTextoPostagem() {
     const caixaDeTextoPostagem = linhaDoTempo.querySelector('#criarPostContainer');
-    iconeCaixaDePostagem.addEventListener('click', abrirCaixaDeTextoPostagem);
-
+    
     if (caixaDeTextoPostagem.style.display === 'block') {
       caixaDeTextoPostagem.style.display = 'none';
     } else {
       caixaDeTextoPostagem.style.display = 'block';
-
     }
   }
 
@@ -95,14 +91,15 @@ export default () => {
 
   function criarEstruturaDoPost(
     autor,
+    conteudo,
     data,
     curtidas,
     idPublicacao,
-    id,
     diferencaEmSegundos,
     dia,
     mes,
-    ano,) {
+    ano,
+    id,) {
     const iconeEditar = document.createElement('img');
     iconeEditar.src = 'Imagens/editar.png';
     const iconeLixeira = document.createElement('img');
@@ -123,7 +120,6 @@ export default () => {
     const icones = document.createElement('div');
     const postIconesContainer = document.createElement('div');
     
-
 
     if (curtidas.includes(id)) {
       iconeCurtir.src = 'Imagens/iconeCurtida.png';
@@ -223,7 +219,8 @@ export default () => {
     iconeCurtir.addEventListener('click', async () => {
        if (!curtiu) {
          curtiu = true;
-
+       console.log("curtidas:", curtidas);
+       console.log("id:", id);
          if (curtidas.includes(id)) {
            await removerCurtidas(idPublicacao, id);
 
@@ -252,6 +249,8 @@ export default () => {
     }else{iconesUsuario.style.display = 'none';
   }
   }
+
+  atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
 
   return linhaDoTempo;
 };

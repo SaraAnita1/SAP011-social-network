@@ -37,7 +37,6 @@ export async function atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela) {
     const curtidas = snapshot.data().qntCurtidas;
     // const que guarda o valor do id de cada documento
     const idPublicacao = snapshot.id;
-
     const dataAtual = new Date();
     // conversão de nano segundos e segundos em milisegundos
     // para tornar compativel com JS.
