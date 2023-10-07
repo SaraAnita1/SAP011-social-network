@@ -17,8 +17,8 @@ body {
 }
 
 #fundoCadastro {
-    width: 330px;
-    height: 515px;
+    width: 85%;
+    height: 550px;
     border-radius: 10px;
     background: rgba(147, 144, 144, 0.39);
     padding-top: 50px;
@@ -36,7 +36,7 @@ body {
     border-radius: 8px;
     background: #FAFAFA;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-left: 50px;
+    margin-left:15%;
     margin-top: 30px;
 }
 
@@ -52,7 +52,7 @@ body {
     font-weight: 700;
     line-height: normal;
     margin-bottom: -30px;
-    margin-left: 50px;
+    margin-left:15%;
 }
 
 #criarContaCadastro {
@@ -62,10 +62,11 @@ body {
     height: 50px;
     color: #FFF;
     font-family: Inter, sans-serif;
-    font-size: 23px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700px;
-    margin-left: 70px;
+    margin-left: 21%;
+    margin-top: 10px;
     padding: 8px 35px 8px 35px;
     text-decoration: none;
 }
@@ -74,7 +75,7 @@ body {
     display: flex;
     width: 80%;
     margin-top: 20px;
-    margin-left: 60px;
+    margin-left: 20%;
 }
 
 .entrarConta {
@@ -99,24 +100,32 @@ body {
     line-height: normal;
     text-decoration-line: underline;
     margin-left: 10px;
+    margin-top: 18px;
 }
 
 #cadastro-imagem-texto {
     display: none;
 }
 
-#mensagemErro{
-    font-size: 16px;
-    margin-left: 100px;
+#mensagemErroEmail{
+    font-size: 15px;
+    margin-left: 15%;
     color: rgba(46, 17, 32, 0.99);
+    margin-top: 5px;
 }
 
 #mensagemErroSenha{
     margin-top: -50px;
-    margin-bottom: 30px;
-    font-size: 15px;
-    margin-left: 60px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    margin-left: 15%;
     color: rgba(46, 17, 32, 0.99);
+}
+
+#mensagemErroNome{
+    color: rgba(46, 17, 32, 0.99);
+    font-size: 15px;
+    margin-left: 15%;
 }
 
 @media screen and (min-width: 768px) {
@@ -182,7 +191,7 @@ body {
         margin-right: 30px;
         margin-right: 35px;
         width: 350px;
-        height: 460px;
+        height: 480px;
         padding-top: 50px;
     }
 
@@ -193,7 +202,7 @@ body {
     #entrarNaConta {
         display: flex;
         width: 80%;
-        margin-top: 20px;
+        margin-top: -40px;
         margin-left: -435px;
     }
 
@@ -212,15 +221,24 @@ body {
         margin-bottom: 42px;
     }
 
-    #mensagemErro{
-        margin-left: 105px;
+    #mensagemErroEmail{
+        font-size: 16px;
+        margin-left: 15%;
+        color: rgba(46, 17, 32, 0.99);
+        margin-top: 5px; 
     }
 
     #mensagemErroSenha{
-        margin-top: -30px;
+        margin-top: -35px;
         margin-bottom: 15px;
-        font-size: 15px;
-        margin-left: 40px;
+        font-size: 16px;
+        margin-left: 15%;
+    }
+
+    #mensagemErroNome{
+        color: rgba(46, 17, 32, 0.99);
+        font-size: 16px;
+        margin-left: 15%;
     }
 
 }
@@ -274,7 +292,7 @@ body {
     }
 
     #fundoCadastro {
-        height: 460px;
+        height: 475px;
         width: 445px;
         padding-top: 65px;
         padding-bottom: 30px;
@@ -307,22 +325,25 @@ body {
         margin-bottom: 40px;
     }
 
-
-    #entrarNaConta {
-        width: 75%;
-        margin-top: 20px;
-        margin-left: -470px;
-        font-size: 18px;
-    }
-
-    #mensagemErro{
-        margin-left: 150px;
+    #mensagemErroEmail{
+        font-size: 16px;
+        margin-left: 17%;
+        color: rgba(46, 17, 32, 0.99);
+        margin-top: 5px; 
     }
 
     #mensagemErroSenha{
         margin-top: -35px;
-        font-size: 15px;
-        margin-left: 80px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        margin-left: 17%;
+    }
+
+    #mensagemErroNome{
+        color: rgba(46, 17, 32, 0.99);
+        font-size: 16px;
+        margin-left: 17%;
+        margin-top: 5px;
     }
 
 }

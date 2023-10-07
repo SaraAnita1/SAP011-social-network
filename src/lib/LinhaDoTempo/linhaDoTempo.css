@@ -71,7 +71,7 @@ body {
     padding-bottom: 30px;
     background: #F5F5F5;
     width: 88%;
-    height:100%;
+    min-height: 100vw;
     display: block;
     margin: auto;
     border-radius: 10px;
