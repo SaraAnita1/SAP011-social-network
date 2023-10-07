@@ -7,43 +7,44 @@ import {
   editarPublicacao,
 } from '../../Firebase/Firestore.js';
 
-import { sair, verificarStatusUsuario, verificarUsuario } from '../../Firebase/FirebaseAuth.js';
+import { sair, verificarStatusUsuario, verificarUsuario, } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
 
-  const conteudo = `
-  <div id="headerContainer">
-  <div id="usuarioPostagem">
-    <p class="nomeUsuario">Olá, Millennial!</p>
-    <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
-  </div>
-  <button id="botaoSair">Sair</button>
-</div>
-<section id="feed">
-  <div id="criarPostContainer">
-    <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
-    <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
-  </div>
-    <div id="conteudoLinhaDoTempo"></div>
-  </div>
-</section>
+
+  const cabecalho = `
+    <div id="headerContainer">
+      <div id="usuarioPostagem">
+        <p class="nomeUsuario">Olá, Millennial!</p>
+        <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
+      </div>
+      <button id="botaoSair">Sair</button>
+    </div>
   `;
 
-  function limparTela() {
-    const linhaDoTempoConteudo = linhaDoTempo.querySelector('#conteudoLinhaDoTempo');
-    linhaDoTempoConteudo.innerHTML = '';
-  }
+  const conteudo = `
+    <section id="feed">
+      <div id="criarPostContainer">
+        <textarea id="caixaDeTextoPost" placeholder="Escreva seu Post aqui..."></textarea>
+        <button id="botaoPublicar" class="botaoPublicar">Publicar</button>
+      </div>
+      <div id="conteudoLinhaDoTempo"></div>
+    </section>
+  `;
 
-  linhaDoTempo.innerHTML = conteudo;
-  const conteudoLinhaDoTempo = linhaDoTempo.querySelector('#conteudoLinhaDoTempo');
+  linhaDoTempo.innerHTML = cabecalho + conteudo;
 
+
+  atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
   // Função para manter usuário logado e deslogado
   if (verificarStatusUsuario()) {
     window.location.hash = '#linhaDoTempo';
   } else {
     window.location.hash = '#telaInicial';
   }
+  
+
 
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');
   botaoSair.addEventListener('click', (event) => {
@@ -57,6 +58,22 @@ export default () => {
     }
   });
 
+
+  
+  const conteudoLinhaDoTempo = linhaDoTempo.querySelector('#conteudoLinhaDoTempo');
+
+  const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
+  botaoPublicar.addEventListener('click', (evento) => {
+    const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
+    evento.preventDefault();
+    if (conteudoPublicacao === '') {
+      alert('Olá, Millennial! Insira algum texto antes de compartilhar sua publicação!');
+    }
+    criarPublicacao(conteudoPublicacao);
+    atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
+    abrirCaixaDeTextoPostagem();
+  });
+
   const iconeCaixaDePostagem = linhaDoTempo.querySelector('#iconeCriarPostagem');
   function abrirCaixaDeTextoPostagem() {
     const caixaDeTextoPostagem = linhaDoTempo.querySelector('#criarPostContainer');
@@ -66,9 +83,17 @@ export default () => {
       caixaDeTextoPostagem.style.display = 'none';
     } else {
       caixaDeTextoPostagem.style.display = 'block';
+
     }
   }
-  function criarEstrturaDoPost(
+
+  function limparTela() {
+    const linhaDoTempoConteudo = linhaDoTempo.querySelector('#conteudoLinhaDoTempo');
+    linhaDoTempoConteudo.innerHTML = '';
+
+  }
+
+  function criarEstruturaDoPost(
     autor,
     data,
     curtidas,
@@ -77,9 +102,7 @@ export default () => {
     diferencaEmSegundos,
     dia,
     mes,
-    ano,
-  ) {
-    // Criação dos elementos de post e icones de forma dinamica
+    ano,) {
     const iconeEditar = document.createElement('img');
     iconeEditar.src = 'Imagens/editar.png';
     const iconeLixeira = document.createElement('img');
@@ -93,12 +116,14 @@ export default () => {
     const usuario = document.createElement('p');
     usuario.innerHTML = autor;
     const postagens = document.createElement('div');
-    postagens.innerHTML = conteudo + curtidas;
+    postagens.innerHTML = conteudo;
     const dataPostagem = document.createElement('div');
     dataPostagem.innerHTML = data;
     const iconesUsuario = document.createElement('div');
     const icones = document.createElement('div');
     const postIconesContainer = document.createElement('div');
+    
+
 
     if (curtidas.includes(id)) {
       iconeCurtir.src = 'Imagens/iconeCurtida.png';
@@ -128,6 +153,7 @@ export default () => {
     postIconesContainer.className = 'postIconesContainer';
     contadorCurtidasTela.className = 'contadorCurtidasTela';
 
+
     if (diferencaEmSegundos < 60) {
       const segundos = Math.floor(diferencaEmSegundos);
       if (segundos > 1) {
@@ -145,7 +171,7 @@ export default () => {
     } else if (diferencaEmSegundos < 86400) {
       const horas = Math.floor(diferencaEmSegundos / 3600);
       if (horas > 1) {
-        dataPostagem.innerHTML = `Há ${horas} hora`;
+        dataPostagem.innerHTML = `Há ${horas} horas`;
       } else {
         dataPostagem.innerHTML = `Há ${horas} hora`;
       }
@@ -158,36 +184,10 @@ export default () => {
       // armazenado no icone da lixeira, no evento de clique.
       const idPost = event.target.dataset.postid;
       if (window.confirm('Realmente deseja deletar esta publicação?')) excluirPublicacao(idPost);
-      atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+      atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
     });
 
-    let curtiu = false;
-
-    iconeCurtir.addEventListener('click', async () => {
-      if (!curtiu) {
-        curtiu = true;
-
-        if (curtidas.includes(id)) {
-          await removerCurtidas(idPublicacao, id);
-
-          const index = curtidas.indexOf(id);
-          if (index !== -1) {
-            curtidas.splice(index, 1);
-          }
-          iconeCurtir.src = '../../Imagens/IconeCurtir.png';
-
-          contadorCurtidasTela.innerHTML = curtidas.length;
-          curtiu = false;
-        } else {
-          await contadorCurtidas(idPublicacao, id);
-          iconeCurtir.src = '../../Imagens/IconeCurtida.png';
-          curtidas.push(id);
-          contadorCurtidasTela.innerHTML = curtidas.length;
-          curtiu = false;
-        }
-      }
-    });
-
+          
     iconeEditar.addEventListener('click', (event) => {
       const dialog = document.createElement('dialog');
       dialog.className = 'dialog';
@@ -214,29 +214,44 @@ export default () => {
         const publicacaoEditada = editarPost;
         editarPublicacao(idPost, publicacaoEditada);
         dialog.close();
-        atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
+        atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
       });
+    });
+
+     let curtiu = false;
+
+    iconeCurtir.addEventListener('click', async () => {
+       if (!curtiu) {
+         curtiu = true;
+
+         if (curtidas.includes(id)) {
+           await removerCurtidas(idPublicacao, id);
+
+           const index = curtidas.indexOf(id);
+           if (index !== -1) {
+             curtidas.splice(index, 1);
+           }
+           iconeCurtir.src = '../../Imagens/IconeCurtir.png';
+
+           contadorCurtidasTela.innerHTML = curtidas.length;
+           curtiu = false;
+         } else {
+           await contadorCurtidas(idPublicacao, id);
+           iconeCurtir.src = '../../Imagens/IconeCurtida.png';
+           curtidas.push(id);
+           contadorCurtidasTela.innerHTML = curtidas.length;
+           curtiu = false;
+         }
+      }
     });
 
     const usuarioAtual = verificarUsuario();
 
     if (usuarioAtual === autor) {
       iconesUsuario.style.display = 'block';
-    }
-    iconesUsuario.style.display = 'none';
+    }else{iconesUsuario.style.display = 'none';
   }
-
-  const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
-  botaoPublicar.addEventListener('click', (evento) => {
-    const conteudoPublicacao = linhaDoTempo.querySelector('#caixaDeTextoPost').value;
-    evento.preventDefault();
-    if (conteudoPublicacao === '') {
-      alert('Olá, Millennial! Insira algum texto antes de compartilhar sua publicação!');
-    }
-    criarPublicacao(conteudoPublicacao);
-    atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela);
-    abrirCaixaDeTextoPostagem();
-  });
+  }
 
   return linhaDoTempo;
 };

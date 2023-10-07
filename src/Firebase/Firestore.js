@@ -25,7 +25,7 @@ export async function criarPublicacao(conteudoPublicacao) {
 }
 
 // Função que insere que busca o post no firebase e insere na tela
-export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela) {
+export async function atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela) {
   const ordenar = query(collection(db, 'publicacoes'), orderBy('data', 'desc'));
   limparTela();
   const querySnapshot = await getDocs(ordenar);
@@ -49,7 +49,7 @@ export async function atualizarLinhaDoTempo(criarEstrturaDoPost, limparTela) {
     const mes = dataDaPublicacao.getMonth();
     const ano = dataDaPublicacao.getFullYear();
 
-    criarEstrturaDoPost(
+    criarEstruturaDoPost(
       autor,
       conteudo,
       data,
