@@ -19,7 +19,8 @@
 
 O social Network é o terceiro projeto do  bootcamp Laboratoria turma SAP-011, que tem como principal objetivo
 a construção de uma rede social responsiva com foco no usuário e desenvolvimento mobile first, deve possuir múltiplas
-telas e ser desemvolvido em Vanilla e permitir que o usuário tenha as seguintes interações com o sistema:
+telas, ser desenvolvido em Vanilla JavaScript, as validações e banco de dados do
+projeto deve ser feita utilizando o Firebase, e permitir que o usuário tenha as seguintes interações com o sistema:
 
 * Criar conta de acesso;
 * Realizar login com e-mail e senha;
@@ -125,12 +126,16 @@ de navegação que agregaria valor ao projeto. A navegação ocorreu de forma tr
 ## Protótipo navegável:
 https://marvelapp.com/prototype/a055bja/screen/92633873
 
-## Foms utilizado no teste: 
+## Forms utilizado no teste: 
 https://docs.google.com/forms/d/e/1FAIpQLSfi2ktVn5FS7_IaGLJ3XVj2JcMkQoAHPAL5WtMfqXQvawiLqw/viewform
 
 ## feedbacks recebidos via forms: 
 ![Captura_de_tela_2023-09-05_111943](https://github.com/SaraAnita1/SAP011-social-network/assets/127780316/6be260ba-70b6-441a-a62f-2edb3f2d573f)
 ![Captura_de_tela_2023-09-05_111955](https://github.com/SaraAnita1/SAP011-social-network/assets/127780316/c603ae98-1668-4b34-8a83-59ac02362830)
+
+## Paleta de cores definida após sugestões: 
+![PALETA DE CORES 3](https://github.com/SaraAnita1/SAP011-social-network/assets/127780316/36eec9e4-80cc-43b6-a2e3-4b60408b589f)
+
 
 ## Prototipo mobile alterado após teste de usabilidade: 
 ![RPROTOTIPO2 REDME](https://github.com/SaraAnita1/SAP011-social-network/assets/127780316/5ff294f6-71f8-4af5-b886-3205b5840768)
@@ -145,12 +150,15 @@ Após o teste usabilidade, foi obervado que a navegação estava boa e intuitiva
 foi definido que a implementação começaria pelos critérios minimos de aceitação do projeto e se esse critérios fossema atingidos
 gostariamos de implemetar as funcionalidades de comentários e publicação de imagens.
 O projeto foi concluido com as seguintes funcionalidades:
-* 1. O usuário consege realizar login utilizando email e senha ou sua conta Google;
-* 2. Ao criar seu cadastro e realizar o login, o usuário é direcionado a sua linha do tempo
+*  O usuário consege realizar login utilizando email e senha ou sua conta Google;
+*  Ao criar seu cadastro e realizar o login, o usuário é direcionado a sua linha do tempo
   onde pode visualizar as publicações de outros usuários e a data em que foi postada;
-* 3. O usuário pode curtir publicações e visualizar quantas curtidas tem em cada publicação;
-* 4. O usuário logado consegue editar e excluir apenas suas publicações;
-* 5. O usuário recebe mensagens ao interagir com a aplicação que o auxilia na navegação.
+*  O usuário pode curtir publicações e visualizar um contador de  curtidas das publicação;
+*  O usuário logado consegue editar e excluir apenas suas publicações;
+*  O usuário recebe mensagens ao interagir com a aplicação que o auxilia na navegação;
+*  O usuário logado permanece logado e consegue navegar entre as páginas e retornar para a linha do tempo;
+*  Ao deslogar o usuário é redirecionado para a tela inicial e não tem acesso ao conteúdo da linha do tempo até que
+  faça o login novamente.
 
 <a name="melhorias-futuras"></a>
  # 👷 Melhorias futuras
