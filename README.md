@@ -164,7 +164,8 @@ O projeto foi concluido com as seguintes funcionalidades:
  # 👷 Melhorias futuras
  
 Devido ao tempo que tinhamos disponível para a realização do projeto, optamos por não implementar a recuperação de
-senha,os comentários e publicações de imagens, as funcionalidade implementadas foram de grande aprendizagem, e futuramente pretendemos
+senha,os comentários, publicações de imagens e criação de um perfil onde o usuário consiga ver apenas suas
+publicações e de amigos adicionado a sua rede, as funcionalidade implementadas foram de grande aprendizagem, e futuramente pretendemos
 realizar essas melhorias para torar a aplicação mais completa.
 
 <a name="testes"></a>
