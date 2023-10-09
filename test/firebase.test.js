@@ -44,3 +44,28 @@ test('criarPublicacao cria uma publicação no Firestore', async () => {
 //     expect.any(String),
 //   );
 // });
+
+// firebaseAuth
+const mockAuth = {
+  currentUser: null,
+};
+
+jest.mock('firebase/auth', () => ({
+  getAuth: () => ({ currentUser: null}),
+  signInWithEmailAndPassword: jest.fn()
+}));
+
+
+describe('Testando funções assíncronas', () => {
+  it('Deve logar com email e senha', async () => {
+
+    const email = 'test@example.com';
+    const senha = 'password';
+    await login(email, senha);
+
+    expect(signInWithEmailAndPassword).toHaveBeenCalledWith(mockAuth, email, senha);
+
+    // Verifique se a função foi chamada apenas uma vez
+    expect(signInWithEmailAndPassword).toHaveBeenCalledTimes(1);
+  });
+});
