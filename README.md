@@ -194,7 +194,7 @@ código.
 * JAVA SCRIPT
 
 <a name="checklist-criterios-minimos-de-aceitacao"></a>
-## 🗹 9. Checklist critérios minímos de aceitação
+## 🗹  Checklist critérios minímos de aceitação
 - [x]  Usar VanillaJS.
 - [x]  Ser uma SPA.
 - [x]  Ser responsivo.
