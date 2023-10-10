@@ -6,8 +6,14 @@ import {
   removerCurtidas,
   editarPublicacao,
 } from '../../Firebase/Firestore.js';
+import criarPostagem from '../../Imagens/criarPostagem.png';
 
-import { sair, verificarStatusUsuario, verificarUsuario, } from '../../Firebase/FirebaseAuth.js';
+import iconEditar from '../../Imagens/editar.png';
+import iconLixeira from '../../Imagens/Lixeira.png';
+import iconcurtir from '../../Imagens/IconeCurtir.png';
+import iconCurtida from '../../Imagens/iconeCurtida.png';
+
+import { sair, verificarStatusUsuario, verificarUsuario } from '../../Firebase/FirebaseAuth.js';
 
 export default () => {
   const linhaDoTempo = document.createElement('div');
@@ -16,7 +22,7 @@ export default () => {
   <div id="headerContainer">
   <div id="usuarioPostagem">
     <p class="nomeUsuario">Olá, Millennial!</p>
-    <img id="iconeCriarPostagem" src="Imagens/criarPostagem.png" alt="Ícone Criar Postagem">
+    <img id="iconeCriarPostagem" src="${criarPostagem}" alt="Ícone Criar Postagem">
   </div>
   <button id="botaoSair">Sair</button>
 </div>
@@ -32,16 +38,12 @@ export default () => {
 
   linhaDoTempo.innerHTML = conteudo;
 
-
-
   // Função para manter usuário logado e deslogado
   if (verificarStatusUsuario()) {
     window.location.hash = '#linhaDoTempo';
   } else {
     window.location.hash = '#telaInicial';
   }
-  
-
 
   const botaoSair = linhaDoTempo.querySelector('#botaoSair');
   botaoSair.addEventListener('click', (event) => {
@@ -55,8 +57,6 @@ export default () => {
     }
   });
 
-
-  
   const conteudoLinhaDoTempo = linhaDoTempo.querySelector('#conteudoLinhaDoTempo');
 
   const botaoPublicar = linhaDoTempo.querySelector('#botaoPublicar');
@@ -75,7 +75,7 @@ export default () => {
   iconeCaixaDePostagem.addEventListener('click', abrirCaixaDeTextoPostagem);
   function abrirCaixaDeTextoPostagem() {
     const caixaDeTextoPostagem = linhaDoTempo.querySelector('#criarPostContainer');
-    
+
     if (caixaDeTextoPostagem.style.display === 'block') {
       caixaDeTextoPostagem.style.display = 'none';
     } else {
@@ -86,7 +86,6 @@ export default () => {
   function limparTela() {
     const linhaDoTempoConteudo = linhaDoTempo.querySelector('#conteudoLinhaDoTempo');
     linhaDoTempoConteudo.innerHTML = '';
-
   }
 
   function criarEstruturaDoPost(
@@ -99,14 +98,15 @@ export default () => {
     dia,
     mes,
     ano,
-    id,) {
+    id,
+  ) {
     const iconeEditar = document.createElement('img');
-    iconeEditar.src = 'Imagens/editar.png';
+    iconeEditar.src = `${iconEditar}`;
     const iconeLixeira = document.createElement('img');
-    iconeLixeira.src = 'Imagens/Lixeira.png';
+    iconeLixeira.src = `${iconLixeira}`;
     iconeLixeira.setAttribute('data-postId', idPublicacao);
     const iconeCurtir = document.createElement('img');
-    iconeCurtir.src = 'Imagens/iconeCurtir.png';
+    iconeCurtir.src = `${iconcurtir}`;
     iconeCurtir.setAttribute('data-postId', idPublicacao);
     const contadorCurtidasTela = document.createElement('div');
     contadorCurtidasTela.textContent = curtidas.length;
@@ -120,11 +120,10 @@ export default () => {
     const icones = document.createElement('div');
     const postIconesContainer = document.createElement('div');
 
-
     if (curtidas.includes(id)) {
-      iconeCurtir.src = 'Imagens/iconeCurtida.png';
+      iconeCurtir.src = `${iconCurtida}`;
     } else {
-      iconeCurtir.src = 'Imagens/iconeCurtir.png';
+      iconeCurtir.src = `${iconcurtir}`;
     }
 
     conteudoLinhaDoTempo.appendChild(usuario);
@@ -148,7 +147,6 @@ export default () => {
     icones.className = 'icones';
     postIconesContainer.className = 'postIconesContainer';
     contadorCurtidasTela.className = 'contadorCurtidasTela';
-
 
     if (diferencaEmSegundos < 60) {
       const segundos = Math.floor(diferencaEmSegundos);
@@ -183,7 +181,6 @@ export default () => {
       atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
     });
 
-          
     iconeEditar.addEventListener('click', (event) => {
       const dialog = document.createElement('dialog');
       dialog.className = 'dialog';
@@ -214,31 +211,29 @@ export default () => {
       });
     });
 
-     let curtiu = false;
+    let curtiu = false;
 
     iconeCurtir.addEventListener('click', async () => {
-       if (!curtiu) {
-         curtiu = true;
-         if (curtidas.includes(id)) {
-           await removerCurtidas(idPublicacao, id);
+      if (!curtiu) {
+        curtiu = true;
+        if (curtidas.includes(id)) {
+          await removerCurtidas(idPublicacao, id);
 
-           const index = curtidas.indexOf(id);
-           if (index !== -1) {
-             curtidas.splice(index, 1);
-           }
-           iconeCurtir.src = '../../Imagens/IconeCurtir.png';
+          const index = curtidas.indexOf(id);
+          if (index !== -1) {
+            curtidas.splice(index, 1);
+          }
+          iconeCurtir.src = `${iconcurtir}`;
 
-           contadorCurtidasTela.innerHTML = curtidas.length;
-           curtiu = false;
-         } else {
-           await contadorCurtidas(idPublicacao, id);
-           iconeCurtir.src = '../../Imagens/IconeCurtida.png';
-           curtidas.push(id);
-           contadorCurtidasTela.innerHTML = curtidas.length;
-           curtiu = false;
-
-   
-         }
+          contadorCurtidasTela.innerHTML = curtidas.length;
+          curtiu = false;
+        } else {
+          await contadorCurtidas(idPublicacao, id);
+          iconeCurtir.src = `${iconCurtida}`;
+          curtidas.push(id);
+          contadorCurtidasTela.innerHTML = curtidas.length;
+          curtiu = false;
+        }
       }
     });
 
@@ -246,11 +241,12 @@ export default () => {
 
     if (usuarioAtual === autor) {
       iconesUsuario.style.display = 'block';
-    }else{iconesUsuario.style.display = 'none';
+    } else {
+      iconesUsuario.style.display = 'none';
+    }
   }
-  }
-  
+
   atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
-  
+
   return linhaDoTempo;
 };

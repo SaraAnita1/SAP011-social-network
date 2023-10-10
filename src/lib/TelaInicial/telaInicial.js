@@ -1,4 +1,6 @@
 import { login, entrarComGoogle } from '../../Firebase/FirebaseAuth.js';
+import imagemTelaInicial from '../../Imagens/imagemTelaInicial.png';
+import logoGoogle from '../../Imagens/logo google.png';
 
 export default () => {
   const container = document.createElement('div');
@@ -6,7 +8,7 @@ export default () => {
   const conteudo = `
         <div id="conteudoPaginaDesktop"> <div id="container-imagem-texto">
         <p id="texto1-desktop">Conectados pela <br> nostalgia</p>
-        <img id="imagem-desktop" src="imagens/imagemTelaInicial.png"></img>
+        <img id="imagem-desktop" src="${imagemTelaInicial}"></img>
         <p id="texto2-desktop">Se você também é jovem pra ser velho
         e velho pra ser jovem, junte se a nós!</p>
         </div>
@@ -22,7 +24,7 @@ export default () => {
         </form>
         <nav>
           <p id="entrarGoogle">Entre com sua conta Google</p>
-          <img id="logoGoogle" src="imagens/logo google.png"></img>
+          <img id="logoGoogle" src="${logoGoogle}"></img>
           <div id="novaConta"
             <p class="criarConta"> Não tem conta? </p>
               <a id="botaoCadastro" href="#cadastro">Crie agora</a>
