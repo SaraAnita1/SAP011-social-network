@@ -119,7 +119,7 @@ export default () => {
     const iconesUsuario = document.createElement('div');
     const icones = document.createElement('div');
     const postIconesContainer = document.createElement('div');
-    
+
 
     if (curtidas.includes(id)) {
       iconeCurtir.src = 'Imagens/iconeCurtida.png';
@@ -219,8 +219,6 @@ export default () => {
     iconeCurtir.addEventListener('click', async () => {
        if (!curtiu) {
          curtiu = true;
-       console.log("curtidas:", curtidas);
-       console.log("id:", id);
          if (curtidas.includes(id)) {
            await removerCurtidas(idPublicacao, id);
 
@@ -238,6 +236,8 @@ export default () => {
            curtidas.push(id);
            contadorCurtidasTela.innerHTML = curtidas.length;
            curtiu = false;
+
+   
          }
       }
     });
@@ -249,8 +249,8 @@ export default () => {
     }else{iconesUsuario.style.display = 'none';
   }
   }
-
+  
   atualizarLinhaDoTempo(criarEstruturaDoPost, limparTela);
-
+  
   return linhaDoTempo;
 };

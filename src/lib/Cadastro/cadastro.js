@@ -90,14 +90,14 @@ export default () => {
     }
 
 // chamar a função cadastrarUsuario
-    try {
-      await cadastrarUsuario(email, senha);
-      window.location.hash = '#telaInicial';
-      console.log('Cadastro bem-sucedido', (response));
-    } catch (error) {
-      capturarErroCadastro(error);
-    }
-  });
+try {
+  await cadastrarUsuario(email, senha, nome);
+  window.location.hash = '#telaInicial';
+} catch (error) {
+  capturarErroCadastro(error);
+}
+});
 
-  return cadastro;
+
+return cadastro;
 };
