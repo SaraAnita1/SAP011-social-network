@@ -14,6 +14,11 @@
 ![Sem título](https://github.com/SaraAnita1/SAP011-social-network/assets/127780316/dbf2155a-49f5-45da-a3fe-20473cd6fa52)
 
 
+# Acesse agora o aplicativo escanenado o QR code abaixo:
+
+![Link projeto](https://github.com/SaraAnita1/SAP011-social-network/assets/127780316/fdb6bd8d-3337-48db-b22c-433cbe9b9370)
+
+
 <a name="apresentacao"></a>
 ## Apresentação
 
